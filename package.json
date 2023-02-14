@@ -1,0 +1,19 @@
+{
+  "name": "test-npm-publish-a",
+  "version": "0.0.1",
+  "description": "Тестовый npm пакет",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sfkhakimov/test-npm-publish.git"
+  },
+  "author": "sfkhakimov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sfkhakimov/test-npm-publish/issues"
+  },
+  "homepage": "https://github.com/sfkhakimov/test-npm-publish#readme"
+}
