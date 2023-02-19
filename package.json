@@ -1,6 +1,6 @@
 {
   "name": "test-npm-publish-a",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Тестовый npm пакет",
   "main": "index.js",
   "scripts": {
@@ -21,6 +21,7 @@
   "homepage": "https://github.com/sfkhakimov/test-npm-publish#readme",
   "dependencies": {
     "@salto-io/dag": "^0.3.31",
-    "lodash": "^4.17.21"
+    "lodash": "^4.17.21",
+    "super-helpers": "^3.0.0"
   }
 }
