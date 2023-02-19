@@ -1,11 +1,14 @@
 {
   "name": "test-npm-publish-a",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Тестовый npm пакет",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "keywords": [
+      "5679test"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sfkhakimov/test-npm-publish.git"
