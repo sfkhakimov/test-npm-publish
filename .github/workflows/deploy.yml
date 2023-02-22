@@ -1,9 +1,12 @@
-name: Deploy
+name: Deploy in npm
 on:
     release:
         types: [published]
 jobs:
+    test-and-linting:
+        uses: ./.github/workflows/test-and-lint.yml
     deploy:
+        needs: [test-and-linting]
         runs-on: ubuntu-latest
         steps:
             -   uses: actions/checkout@v3

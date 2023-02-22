@@ -1,16 +1,9 @@
 name: Push branches
-run-name: ${{ github.actor }} is learning GitHub Actions
-on: [push]
+run-name: Test and linting check
+on:
+    push:
+        branches-ignore:
+            - 'master'
 jobs:
-    test:
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v3
-            - run: npm ci
-            - run: npm run test
-    lint:
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v3
-            - run: npm ci
-            - run: npm run lint
+    test-and-lint:
+        uses: ./.github/workflows/test-and-lint.yml
