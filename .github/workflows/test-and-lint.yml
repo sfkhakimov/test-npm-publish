@@ -1,4 +1,6 @@
 name: Test and Lint
+on:
+    workflow_call:
 jobs:
     test:
         runs-on: ubuntu-latest
