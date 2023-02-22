@@ -1,9 +1,6 @@
 name: Push branches
 run-name: ${{ github.actor }} is learning GitHub Actions
-on:
-    push:
-        branches-ignore:
-            - 'master'
+on: [push]
 jobs:
     test:
         runs-on: ubuntu-latest
