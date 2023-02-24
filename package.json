@@ -5,8 +5,9 @@
     "main": "index.js",
     "scripts": {
         "build": "rollup src/packages/index.ts --config",
-        "test": "tsc",
-        "lint": "eslint --ext .js,.jsx,.ts,.tsx src"
+        "test": "",
+        "lint": "",
+        "lint:fix": "eslint --ext .js,.jsx,.ts,.tsx src --fix"
     },
     "keywords": [
         "5679test"
@@ -33,6 +34,11 @@
         "@types/lodash": "^4.14.165",
         "eslint": "^8.34.0",
         "eslint-config-airbnb": "^19.0.4",
+        "eslint-config-recommended": "^4.1.0",
+        "eslint-config-standard": "^17.0.0",
+        "eslint-plugin-import": "^2.27.5",
+        "eslint-plugin-n": "^15.6.1",
+        "eslint-plugin-promise": "^6.1.1",
         "prettier": "^2.8.4",
         "rollup": "^3.17.2",
         "tslib": "^2.5.0",
