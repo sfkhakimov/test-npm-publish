@@ -1,2 +1,2 @@
-export { default as TourContext } from './TourProvider'
-export * from './TourProvider'
+export { default as TourContext } from './TourProvider';
+export * from './TourProvider';
