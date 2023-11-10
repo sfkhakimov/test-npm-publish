@@ -4,7 +4,7 @@ on:
         types: [published]
 jobs:
     test-and-linting:
-        uses: ./.github/workflows/test-and-lint.yml
+        uses: ./.github/workflows/tsc-and-lint.yml
     deploy:
         needs: [test-and-linting]
         runs-on: ubuntu-latest

@@ -1,9 +1,0 @@
-name: Push branches
-run-name: Test and linting check
-on:
-    push:
-        branches-ignore:
-            - 'master'
-jobs:
-    test-and-lint:
-        uses: ./.github/workflows/test-and-lint.yml
