@@ -1,6 +1,6 @@
 {
     "name": "test-npm-publish-a",
-    "version": "0.0.22",
+    "version": "0.0.23",
     "description": "Тестовый npm пакет",
     "main": "lib/test-npm-publish.min.js",
     "scripts": {
@@ -22,6 +22,9 @@
         "url": "https://github.com/sfkhakimov/test-npm-publish/issues"
     },
     "homepage": "https://github.com/sfkhakimov/test-npm-publish#readme",
+    "files": [
+        "lib/"
+    ],
     "dependencies": {
         "lodash": "^4.17.20",
         "react": "^17.0.0-0 || ^18.0.0-0",
