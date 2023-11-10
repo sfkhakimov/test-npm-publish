@@ -1,22 +1,20 @@
 {
+    "extends": "@tsconfig/recommended/tsconfig.json",
     "compilerOptions": {
-        "baseUrl": "./src",
-        "experimentalDecorators": true,
-        "target": "es6",
-        "lib": ["dom", "dom.iterable", "esnext"],
-        "allowJs": true,
-        "skipLibCheck": true,
-        "esModuleInterop": true,
-        "allowSyntheticDefaultImports": true,
-        "strict": true,
-        "forceConsistentCasingInFileNames": true,
-        "noFallthroughCasesInSwitch": true,
-        "module": "esnext",
-        "moduleResolution": "node",
-        "resolveJsonModule": true,
         "isolatedModules": true,
-        "noEmit": true,
+        "outDir": "./dist",
+        "baseUrl": "src",
+        "composite": true,
+        "declaration": true,
         "jsx": "react",
+        "paths": {
+            "components/*": ["common/*"],
+            "constants/*": ["modules/lk/*"],
+            "hooks/*": ["modules/store/*"],
+            "providers/*": ["modules/lk-operator/*"],
+            "utils/*": ["modules/info-center/*"],
+        }
     },
-    "exclude": ["node_modules", "dist", "*.d.ts"]
+    "include": ["src/**/*"],
+    "exclude": ["node_modules", "lib"]
 }
