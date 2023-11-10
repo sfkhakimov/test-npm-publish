@@ -117,7 +117,8 @@ const Mask: React.FC<MaskProps> = ({
                     ref={setReferenceEl}
                     data-abc="abc"
                     style={{
-                        // @ts-ignore
+                        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                        // @ts-expect-error
                         x: left,
                         y: top,
                         width: width,
@@ -129,7 +130,8 @@ const Mask: React.FC<MaskProps> = ({
                 />
                 <rect
                     style={{
-                        // @ts-ignore
+                        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                        // @ts-expect-error
                         x: 0,
                         y: 0,
                         width: windowWidth,
@@ -141,7 +143,8 @@ const Mask: React.FC<MaskProps> = ({
                 />
                 <rect
                     style={{
-                        // @ts-ignore
+                        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                        // @ts-expect-error
                         x: left,
                         y: top,
                         width,

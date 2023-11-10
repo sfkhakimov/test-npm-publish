@@ -1,4 +1,3 @@
-import babel from 'rollup-plugin-babel'
 import typescript from '@rollup/plugin-typescript'
 import css from 'rollup-plugin-css-only'
 
