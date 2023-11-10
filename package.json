@@ -1,6 +1,6 @@
 {
     "name": "test-npm-publish-a",
-    "version": "0.0.21",
+    "version": "0.0.22",
     "description": "Тестовый npm пакет",
     "main": "lib/test-npm-publish.min.js",
     "scripts": {
