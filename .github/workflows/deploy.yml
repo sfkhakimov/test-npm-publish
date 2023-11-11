@@ -3,7 +3,7 @@ on:
     release:
         types: [published]
 jobs:
-    test-and-linting:
+    tsc-and-linting:
         uses: ./.github/workflows/tsc-and-lint.yml
     deploy:
         needs: [tsc-and-linting]
