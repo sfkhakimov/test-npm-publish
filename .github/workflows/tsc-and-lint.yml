@@ -1,8 +1,6 @@
 name: Test and Lint
 on:
   push:
-      tags-ignore:
-          - v*.**
   workflow_call:
 jobs:
     tsc:
