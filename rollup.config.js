@@ -1,19 +1,15 @@
 import typescript from '@rollup/plugin-typescript'
 import css from 'rollup-plugin-css-only'
+import postcss from 'rollup-plugin-postcss'
+import importCss from 'rollup-plugin-import-css'
+import styles from 'rollup-plugin-styles'
 
 export default {
     input: 'src/index.ts',
     output: {
-        file: 'lib/test-npm-publish.min.js',
-        format: 'iife',
+        file: 'lib/index.js',
+        format: 'esm',
+        sourcemap: true,
     },
-    plugins: [
-        babel({
-            exclude: 'node_modules/**',
-            presets: ['@babel/preset-env'],
-            plugins: ['@babel/plugin-transform-runtime'],
-        }),
-        typescript(),
-        css(),
-    ],
+    plugins: [typescript({ tsconfig: 'tsconfig.json' }), styles()],
 }

@@ -1,5 +1,5 @@
 import Tour from '../../components/Tour/Tour'
-import { ProviderProps, TourContextType } from '../../components/Tour/types'
+import { ProviderProps, TourContextType } from '../../components/Tour'
 import { TourStatusesEnum } from '../../constants/constants'
 import { useLocalStorage } from '../../hooks'
 import React, { useContext, useEffect, useMemo, useState } from 'react'
@@ -59,7 +59,7 @@ export const useTour = () => {
 }
 export const useTourAllStore = () => useContext(TourContext)
 
-const TourProvider: React.FC<ProviderProps> = props => {
+const TourProvider: React.FC<ProviderProps> = (props) => {
     const {
         children,
         defaultOpen = false,
