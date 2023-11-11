@@ -1,6 +1,7 @@
 name: Test and Lint
 on:
   push:
+  workflow_call:
 jobs:
     tsc:
         runs-on: ubuntu-latest
