@@ -1,7 +1,5 @@
-name: Deploy in npm
-on:
-    release:
-        types: [published]
+name: Deploy
+on: [tags]
 jobs:
     test-and-linting:
         uses: ./.github/workflows/tsc-and-lint.yml
