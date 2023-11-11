@@ -1,5 +1,7 @@
 name: Deploy
-on: [tags]
+on:
+    release:
+        types: [ published ]
 jobs:
     test-and-linting:
         uses: ./.github/workflows/tsc-and-lint.yml
