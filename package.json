@@ -1,6 +1,6 @@
 {
     "name": "test-npm-publish-a",
-    "version": "0.0.44",
+    "version": "0.0.45",
     "description": "Тестовый npm пакет",
     "main": "./lib/index.js",
     "types": "./lib/types/index.d.ts",
