@@ -59,7 +59,7 @@ export const useTour = () => {
 }
 export const useTourAllStore = () => useContext(TourContext)
 
-const TourProvider: React.FC<ProviderProps> = (props) => {
+export const TourProvider: React.FC<ProviderProps> = (props) => {
     const {
         children,
         defaultOpen = false,
@@ -140,7 +140,3 @@ const TourProvider: React.FC<ProviderProps> = (props) => {
         </TourContext.Provider>
     )
 }
-
-export { TourProvider }
-
-export default TourContext

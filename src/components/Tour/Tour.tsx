@@ -14,7 +14,7 @@ const getPadding = (padding?: Padding) => {
     if (typeof padding === 'object' && padding !== null) {
         return {
             maskPadding: padding.mask,
-            popperPadding: padding.popover,
+            popperPadding: padding.popper,
             wrapperPadding: padding.wrapper,
         }
     }
@@ -73,7 +73,7 @@ const Tour: React.FC<TourProps> = ({
     const {
         mask: maskStyles,
         overlay: overlayStyles,
-        popover: popperStyles,
+        popper: popperStyles,
     } = styles
 
     const [popoverRect, setPopperRect] = useState<PopperRectType>(

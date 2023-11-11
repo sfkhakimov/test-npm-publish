@@ -33,7 +33,7 @@ export type TourHelpersType = {
 export type StylesType = {
     mask?: CSSProperties
     overlay?: CSSProperties
-    popover?: CSSProperties
+    popper?: CSSProperties
 }
 
 type SharedProps = {
@@ -50,20 +50,20 @@ type SharedProps = {
     beforeClose?: (target: Element | null) => void
     onClickHighlighted?: MouseEventHandler<SVGRectElement>
     scrollSmooth?: boolean
-    ContentComponent: ComponentType<PopoverContentProps>
+    ContentComponent: ComponentType<PopperContentProps>
     Wrapper?: ComponentType
     startAt?: number
     onChangeStep?: (step: StepType, currentStep: number) => Promise<void> | void
 }
 
-export type PopoverContentProps = TourStoreType & TourHelpersType & StepType
+export type PopperContentProps = TourStoreType & TourHelpersType & StepType
 
 export type ComponentPadding = number | [number, number]
 export type Padding =
     | number
     | {
           mask?: ComponentPadding
-          popover?: ComponentPadding
+          popper?: ComponentPadding
           wrapper?: ComponentPadding
       }
 
@@ -107,8 +107,8 @@ export type ProviderProps = SharedProps & {
 
 export type StepType = {
     selector: string
-    title?: ReactNode | ((props: PopoverContentProps) => void)
-    content: ReactNode | ((props: PopoverContentProps) => void)
+    title?: ReactNode | ((props: PopperContentProps) => void)
+    content: ReactNode | ((props: PopperContentProps) => void)
     placement?: TutorialPopperPlacement
     highlightedSelectors?: string[]
     navDotAriaLabel?: string
