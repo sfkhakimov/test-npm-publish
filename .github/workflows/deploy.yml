@@ -1,12 +1,12 @@
 name: Deploy
 on:
     release:
-        types: [ published ]
+        types: [published]
 jobs:
     test-and-linting:
         uses: ./.github/workflows/tsc-and-lint.yml
     deploy:
-        needs: [test-and-linting]
+        needs: [tsc-and-linting]
         runs-on: ubuntu-latest
         steps:
             -   uses: actions/checkout@v3
