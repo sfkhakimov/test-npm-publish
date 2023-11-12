@@ -1,21 +1,14 @@
-import { Tour } from './components/Tour'
-import { TourStatusesEnum } from './constants/constants'
-import { useTourHelpers } from './hooks'
-import { TourContext, TourProvider, useTour } from './providers/TourProvider'
+import { Guide } from './components/Guide'
+import { GuideStatusesEnum } from './constants/constants'
+import { useGuideHelpers } from './hooks'
+import { GuideProvider, useGuide } from './providers/GuideProvider'
 
-export {
-    Tour,
-    TourContext,
-    TourProvider,
-    useTour,
-    useTourHelpers,
-    TourStatusesEnum,
-}
+export { Guide, GuideProvider, useGuide, useGuideHelpers, GuideStatusesEnum }
 
 export type {
     StepType,
     ProviderProps,
-    TourProps,
-    PopoverContentProps,
-    TourHelpersType,
-} from './components/Tour/types'
+    GuideProps,
+    PopperContentProps,
+    GuideHelpersType,
+} from './components/Guide/types'

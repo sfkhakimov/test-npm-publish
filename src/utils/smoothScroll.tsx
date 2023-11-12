@@ -1,4 +1,4 @@
-import { ComponentPadding } from '../components/Tour'
+import { ComponentPadding } from '../components/Guide'
 import { isArray } from 'lodash'
 
 type ScrollLogicalPosition = 'center' | 'end' | 'nearest' | 'start'

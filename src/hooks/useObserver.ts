@@ -1,4 +1,4 @@
-import { StepType } from '../components/Tour/types'
+import { StepType } from '../components/Guide/types'
 import { useMutationObserver } from './useMutationObserver'
 import { useResizeObserver } from './useResizeObserver'
 import { debounce, throttle } from 'lodash'
@@ -35,7 +35,7 @@ const useObserver = ({
         throttle((mutationList: MutationRecord[]) => {
             const { selector } = stepRef.current
 
-            setTarget(prev => {
+            setTarget((prev) => {
                 const el = document.querySelector(selector)
 
                 if (!el) return null

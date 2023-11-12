@@ -1,4 +1,4 @@
-import { PopperRectType } from '../components/Tour'
+import { PopperRectType } from '../components/Guide'
 import { RectResult, smoothScroll } from '../utils'
 import { ScrollOptionsType } from '../utils/smoothScroll'
 import { debounce } from 'lodash'
@@ -6,27 +6,27 @@ import { useCallback, useEffect } from 'react'
 
 type Args = {
     scrollOptions: ScrollOptionsType
-    popoverRect: PopperRectType
+    popperRect: PopperRectType
     sizes: RectResult
 }
 
-export const useScroll = ({ scrollOptions, popoverRect, sizes }: Args) => {
+export const useScroll = ({ scrollOptions, popperRect, sizes }: Args) => {
     const debounceScrollToElem = useCallback(
         debounce(
             ({
                 scrollOptions,
                 sizes,
-                popoverRect,
+                popperRect,
             }: {
-                popoverRect: PopperRectType
+                popperRect: PopperRectType
                 sizes: RectResult
                 scrollOptions: ScrollOptionsType
             }) => {
                 const { top, left, right, bottom } = {
-                    top: Math.min(popoverRect.top, sizes.top),
-                    left: Math.min(popoverRect.left, sizes.left),
-                    right: Math.max(popoverRect.right, sizes.right),
-                    bottom: Math.max(popoverRect.bottom, sizes.bottom),
+                    top: Math.min(popperRect.top, sizes.top),
+                    left: Math.min(popperRect.left, sizes.left),
+                    right: Math.max(popperRect.right, sizes.right),
+                    bottom: Math.max(popperRect.bottom, sizes.bottom),
                 }
 
                 void smoothScroll({
@@ -46,7 +46,7 @@ export const useScroll = ({ scrollOptions, popoverRect, sizes }: Args) => {
         debounceScrollToElem({
             scrollOptions,
             sizes,
-            popoverRect,
+            popperRect,
         })
     }, [
         scrollOptions,
@@ -54,10 +54,10 @@ export const useScroll = ({ scrollOptions, popoverRect, sizes }: Args) => {
         sizes.left,
         sizes.right,
         sizes.bottom,
-        popoverRect.top,
-        popoverRect.left,
-        popoverRect.right,
-        popoverRect.bottom,
+        popperRect.top,
+        popperRect.left,
+        popperRect.right,
+        popperRect.bottom,
         debounceScrollToElem,
     ])
 }
