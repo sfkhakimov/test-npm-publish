@@ -16,6 +16,7 @@ jobs:
                     registry-url: 'https://registry.npmjs.org'
             -   run: npm pkg delete scripts.prepare
             -   run: npm ci --omit=dev
+            -   run: npm run build
             -   run: npm publish
                 env:
                     NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
