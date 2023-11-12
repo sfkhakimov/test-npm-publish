@@ -1,7 +1,4 @@
 import typescript from '@rollup/plugin-typescript'
-import css from 'rollup-plugin-css-only'
-import postcss from 'rollup-plugin-postcss'
-import importCss from 'rollup-plugin-import-css'
 import styles from 'rollup-plugin-styles'
 
 export default {
