@@ -1,6 +1,6 @@
-import Tour from '../../components/Tour/Tour'
-import { ProviderProps, TourContextType } from '../../components/Tour'
-import { TourStatusesEnum } from '../../constants/constants'
+import Guide from '../../components/Guide/Guide'
+import { ProviderProps, GuideContextType } from '../../components/Guide'
+import { GuideStatusesEnum } from '../../constants/constants'
 import { useLocalStorage } from '../../hooks'
 import React, { useContext, useEffect, useMemo, useState } from 'react'
 
@@ -13,7 +13,7 @@ const defaultState = {
     setStatus: () => {
         return
     },
-    status: TourStatusesEnum.Idle,
+    status: GuideStatusesEnum.Idle,
     localStorageKey: undefined,
     prevStep: undefined,
     currStep: undefined,
@@ -32,9 +32,9 @@ const defaultState = {
     },
 }
 
-const TourContext = React.createContext<TourContextType>(defaultState)
+const GuideContext = React.createContext<GuideContextType>(defaultState)
 
-export const useTour = () => {
+export const useGuide = () => {
     const {
         isOpen,
         currentStep,
@@ -44,7 +44,7 @@ export const useTour = () => {
         prevStep,
         startAt,
         status,
-    } = useContext(TourContext)
+    } = useContext(GuideContext)
 
     return {
         isOpen,
@@ -57,9 +57,9 @@ export const useTour = () => {
         status,
     }
 }
-export const useTourAllStore = () => useContext(TourContext)
+export const useGuideAllStore = () => useContext(GuideContext)
 
-export const TourProvider: React.FC<ProviderProps> = (props) => {
+export const GuideProvider: React.FC<ProviderProps> = (props) => {
     const {
         children,
         defaultOpen = false,
@@ -76,13 +76,13 @@ export const TourProvider: React.FC<ProviderProps> = (props) => {
     const [currentStep, setCurrentStep] = useState(startAt)
     const [steps, setSteps] = useState(defaultSteps)
     const [status, setStatus] = useState(
-        defaultOpen ? TourStatusesEnum.Active : TourStatusesEnum.Idle
+        defaultOpen ? GuideStatusesEnum.Active : GuideStatusesEnum.Idle
     )
     const isOpen =
         [
-            TourStatusesEnum.Paused,
-            TourStatusesEnum.Active,
-            TourStatusesEnum.Waiting,
+            GuideStatusesEnum.Paused,
+            GuideStatusesEnum.Active,
+            GuideStatusesEnum.Waiting,
         ].includes(status) && !!steps.length
 
     useLocalStorage({
@@ -134,9 +134,9 @@ export const TourProvider: React.FC<ProviderProps> = (props) => {
     }, [defaultSteps])
 
     return (
-        <TourContext.Provider value={value}>
+        <GuideContext.Provider value={value}>
             {children}
-            {isOpen ? <Tour {...other} /> : null}
-        </TourContext.Provider>
+            {isOpen ? <Guide {...other} /> : null}
+        </GuideContext.Provider>
     )
 }

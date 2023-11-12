@@ -1,5 +1,5 @@
 import { getDocumentSizes, RectResult, getPadding } from '../../utils'
-import { ComponentPadding } from '../Tour'
+import { ComponentPadding } from '../Guide'
 import { TutorialPopperPlacement } from './types'
 import { calculatePopperPosition } from './utils'
 import { useState, useEffect, RefObject } from 'react'

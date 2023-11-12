@@ -1,5 +1,5 @@
 import { RectResult } from '../../utils'
-import { ComponentPadding, PopperRectType } from '../Tour'
+import { ComponentPadding, PopperRectType } from '../Guide'
 import { usePopper } from './hooks'
 import { defaultStyles } from './styles'
 import './styles.css'
@@ -13,7 +13,7 @@ import React, {
 } from 'react'
 import ReactDOM from 'react-dom'
 
-export type PopoverProps = {
+export type PopperProps = {
     sizes: RectResult
     rootEl: string
     target: Element | null
@@ -25,7 +25,7 @@ export type PopoverProps = {
     setPopperRect: Dispatch<SetStateAction<PopperRectType>>
     maskPadding?: ComponentPadding
 }
-const Popper: React.FC<PopoverProps> = ({
+const Popper: React.FC<PopperProps> = ({
     sizes,
     rootEl,
     target,
@@ -67,7 +67,8 @@ const Popper: React.FC<PopoverProps> = ({
                 ...styles,
             }}
             ref={popperRef}
-            {...props}>
+            {...props}
+        >
             <div className={`${popperPlacement} popper-arrow`}></div>
             {children}
         </div>,

@@ -1,4 +1,4 @@
-import { TourStatusesEnum } from '../../constants/constants'
+import { GuideStatusesEnum } from '../../constants/constants'
 import { TutorialPopperPlacement } from '../Popper/types'
 import {
     ReactNode,
@@ -17,7 +17,7 @@ export type PopperRectType = {
     bottom: number
 }
 
-export type TourHelpersType = {
+export type GuideHelpersType = {
     start: () => Promise<void>
     stop: () => Promise<void>
     skip: () => void
@@ -56,7 +56,7 @@ type SharedProps = {
     onChangeStep?: (step: StepType, currentStep: number) => Promise<void> | void
 }
 
-export type PopperContentProps = TourStoreType & TourHelpersType & StepType
+export type PopperContentProps = GuideStoreType & GuideHelpersType & StepType
 
 export type ComponentPadding = number | [number, number]
 export type Padding =
@@ -67,14 +67,14 @@ export type Padding =
           wrapper?: ComponentPadding
       }
 
-type TourContextSetStatesType = {
+type GuideContextSetStatesType = {
     setSteps: Dispatch<React.SetStateAction<StepType[]>>
-    setStatus: Dispatch<SetStateAction<TourStatusesEnum>>
+    setStatus: Dispatch<SetStateAction<GuideStatusesEnum>>
     setCurrentStep: Dispatch<React.SetStateAction<number>>
 }
 
-export type TourStoreType = {
-    status: TourStatusesEnum
+export type GuideStoreType = {
+    status: GuideStatusesEnum
     prevStep?: StepType
     currStep?: StepType
     nextStep?: StepType
@@ -83,14 +83,14 @@ export type TourStoreType = {
     steps: StepType[]
 } & Pick<SharedProps, 'startAt'>
 
-export type TourContextType = TourStoreType &
-    TourContextSetStatesType &
+export type GuideContextType = GuideStoreType &
+    GuideContextSetStatesType &
     Pick<
         ProviderProps,
         'beforeStart' | 'beforeStop' | 'afterStart' | 'afterStop'
     >
 
-export type TourProps = Omit<
+export type GuideProps = Omit<
     SharedProps,
     'defaultOpen' | 'localStorageKey' | 'steps'
 >

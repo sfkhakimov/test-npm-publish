@@ -1,4 +1,4 @@
-import { StepType } from '../components/Tour'
+import { StepType } from '../components/Guide'
 import { getRect, RectResult } from '../utils'
 import useObserver from './useObserver'
 import { useEffect, useCallback, useState, useRef } from 'react'
@@ -40,7 +40,7 @@ export const useSizes = ({ step }: Args) => {
     }, [])
 
     const overlayUpdate = useCallback(() => {
-        setOverlayHeight(prev => {
+        setOverlayHeight((prev) => {
             const docHeight = document.body.clientHeight
             return docHeight !== prev ? docHeight : prev
         })

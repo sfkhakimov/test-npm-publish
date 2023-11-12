@@ -1,14 +1,14 @@
 import { getByKey, saveByKey } from '../utils'
-import { TourStatusesEnum } from '../constants/constants'
+import { GuideStatusesEnum } from '../constants/constants'
 import { isEmpty } from 'lodash'
 import { Dispatch, SetStateAction, useEffect } from 'react'
 
 export type TutorialLocalStorageArgs = {
-    status: TourStatusesEnum
+    status: GuideStatusesEnum
     currentStep: number
     localStorageKey?: string
 
-    setStatus: Dispatch<SetStateAction<TourStatusesEnum>>
+    setStatus: Dispatch<SetStateAction<GuideStatusesEnum>>
     setCurrentStep: Dispatch<SetStateAction<number>>
 }
 
@@ -28,12 +28,12 @@ export const useLocalStorage = ({
 
         const { status, currentStep } = obj
 
-        setStatus(status as TourStatusesEnum)
+        setStatus(status as GuideStatusesEnum)
         setCurrentStep(currentStep as number)
     }, [localStorageKey])
 
     useEffect(() => {
-        if (!localStorageKey || status === TourStatusesEnum.Idle) return
+        if (!localStorageKey || status === GuideStatusesEnum.Idle) return
 
         saveByKey(localStorageKey, {
             status,

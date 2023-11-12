@@ -1,10 +1,10 @@
-import { TourStatusesEnum } from '../../constants/constants'
-import { useScroll, useSizes, useTourHelpers } from '../../hooks'
-import { useTourAllStore } from '../../providers/TourProvider'
+import { GuideStatusesEnum } from '../../constants/constants'
+import { useScroll, useSizes, useGuideHelpers } from '../../hooks'
+import { useGuideAllStore } from '../../providers/GuideProvider'
 import { getStepToDisplayAfterReloadPage } from '../../utils/helpers'
 import { Mask } from '../Mask'
 import { Popper } from '../Popper'
-import { Padding, PopperRectType, TourProps } from './types'
+import { Padding, PopperRectType, GuideProps } from './types'
 import React, { useEffect, useMemo, useState } from 'react'
 
 let timerId: NodeJS.Timeout
@@ -27,14 +27,14 @@ const getPadding = (padding?: Padding) => {
 
 const DEFAULT_LOADING_TIMEOUT_DELAY = 5000
 
-const initialPopoverRectState: PopperRectType = {
+const initialPopperRectState: PopperRectType = {
     left: 0,
     top: 0,
     right: 0,
     bottom: 0,
 }
 
-const Tour: React.FC<TourProps> = ({
+const Guide: React.FC<GuideProps> = ({
     rootEl = 'body',
     styles: globalStyles = {},
     scrollSmooth = true,
@@ -50,7 +50,7 @@ const Tour: React.FC<TourProps> = ({
     loader = <>Loading...</>,
     onChangeStep,
 }) => {
-    const store = useTourAllStore()
+    const store = useGuideAllStore()
     const {
         setCurrentStep,
         setStatus,
@@ -63,7 +63,7 @@ const Tour: React.FC<TourProps> = ({
         nextStep,
         prevStep,
     } = store
-    const helpers = useTourHelpers()
+    const helpers = useGuideHelpers()
     const [referenceEl, setReferenceEl] = useState<Element | null>(null)
 
     const step = steps[currentStep]
@@ -76,8 +76,8 @@ const Tour: React.FC<TourProps> = ({
         popper: popperStyles,
     } = styles
 
-    const [popoverRect, setPopperRect] = useState<PopperRectType>(
-        initialPopoverRectState
+    const [popperRect, setPopperRect] = useState<PopperRectType>(
+        initialPopperRectState
     )
 
     const [isInitialLoading, setIsInitialLoading] = useState(false)
@@ -101,7 +101,7 @@ const Tour: React.FC<TourProps> = ({
     })
 
     useScroll({
-        popoverRect,
+        popperRect,
         scrollOptions,
         sizes,
     })
@@ -112,14 +112,14 @@ const Tour: React.FC<TourProps> = ({
 
     const popperPlacement = step?.placement || placement
 
-    const TourWrapper = Wrapper ? Wrapper : React.Fragment
+    const GuideWrapper = Wrapper ? Wrapper : React.Fragment
 
     const canViewComponent =
         step &&
-        [TourStatusesEnum.Active, TourStatusesEnum.Waiting].includes(status)
+        [GuideStatusesEnum.Active, GuideStatusesEnum.Waiting].includes(status)
 
     const canViewLoader =
-        isInitialLoading || status === TourStatusesEnum.Waiting
+        isInitialLoading || status === GuideStatusesEnum.Waiting
 
     useEffect(() => {
         afterOpen?.(targetRef.current)
@@ -134,7 +134,7 @@ const Tour: React.FC<TourProps> = ({
 
             timerId = setTimeout(() => {
                 setIsInitialLoading(false)
-                setStatus(TourStatusesEnum.Stopped)
+                setStatus(GuideStatusesEnum.Stopped)
                 console.error('Element not found for instruction.')
                 clearTimeout(timerId)
             }, loadingTimeout)
@@ -149,22 +149,22 @@ const Tour: React.FC<TourProps> = ({
 
     useEffect(() => {
         if (target) {
-            setStatus(TourStatusesEnum.Active)
+            setStatus(GuideStatusesEnum.Active)
             return
         }
 
         if (isFirstStep) return
 
-        setStatus(TourStatusesEnum.Waiting)
+        setStatus(GuideStatusesEnum.Waiting)
     }, [target, isFirstStep])
 
     useEffect(() => {
-        if (status !== TourStatusesEnum.Waiting) {
+        if (status !== GuideStatusesEnum.Waiting) {
             return clearTimeout(stepTimerId)
         }
 
         stepTimerId = setTimeout(() => {
-            setStatus(TourStatusesEnum.Paused)
+            setStatus(GuideStatusesEnum.Paused)
 
             return () => {
                 clearTimeout(stepTimerId)
@@ -185,7 +185,7 @@ const Tour: React.FC<TourProps> = ({
     }, [])
 
     return canViewComponent ? (
-        <TourWrapper>
+        <GuideWrapper>
             <Mask
                 rootEl={rootEl}
                 setReferenceEl={setReferenceEl}
@@ -226,8 +226,8 @@ const Tour: React.FC<TourProps> = ({
                     />
                 </Popper>
             )}
-        </TourWrapper>
+        </GuideWrapper>
     ) : null
 }
 
-export default Tour
+export default Guide

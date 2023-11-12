@@ -1,12 +1,12 @@
-import { StepType } from '../components/Tour'
-import { TourStatusesEnum } from '../constants/constants'
-import { useTourAllStore } from '../providers/TourProvider'
+import { StepType } from '../components/Guide'
+import { GuideStatusesEnum } from '../constants/constants'
+import { useGuideAllStore } from '../providers/GuideProvider'
 import { useEvent } from './useEvent'
 import { merge } from 'lodash'
 import { useMemo } from 'react'
 
-export const useTourHelpers = () => {
-    const store = useTourAllStore()
+export const useGuideHelpers = () => {
+    const store = useGuideAllStore()
 
     const {
         setCurrentStep,
@@ -32,7 +32,7 @@ export const useTourHelpers = () => {
         await beforeStart?.()
 
         setCurrentStep(startAt)
-        setStatus(TourStatusesEnum.Active)
+        setStatus(GuideStatusesEnum.Active)
 
         await afterStart?.()
     })
@@ -40,7 +40,7 @@ export const useTourHelpers = () => {
     const stop = useEvent(async () => {
         await beforeStop?.()
 
-        setStatus(TourStatusesEnum.Stopped)
+        setStatus(GuideStatusesEnum.Stopped)
         setCurrentStep(startAt)
 
         await afterStop?.()
@@ -50,7 +50,7 @@ export const useTourHelpers = () => {
         if (!isOpen) return
 
         if (isLastStep) {
-            setStatus(TourStatusesEnum.Completed)
+            setStatus(GuideStatusesEnum.Completed)
             setCurrentStep(startAt)
             return
         }
@@ -68,7 +68,7 @@ export const useTourHelpers = () => {
 
     const skip = useEvent(() => {
         if (!isOpen) return
-        setStatus(TourStatusesEnum.Skipped)
+        setStatus(GuideStatusesEnum.Skipped)
     })
 
     const goToStep = useEvent((newStep: number) => {
