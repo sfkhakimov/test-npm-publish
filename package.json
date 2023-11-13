@@ -1,0 +1,34 @@
+{
+    "name": "test-npm-publish-a",
+    "version": "0.0.54",
+    "description": "Тестовый npm пакет",
+    "workspaces": [
+        "./lib",
+        "./site"
+    ],
+    "scripts": {
+        "lib:build": "npm run build -w lib",
+        "lib:tsc": "npm run tsc -w lib",
+        "lib:lint": "npm run lint -w lib",
+        "lib:lint:fix": "npm run lint:fix -w lib",
+        "site:start": "npm run start -w site",
+        "site:build": "npm run build -w site",
+        "site:tsc": "npm run typecheck -w site"
+    },
+    "keywords": [
+        "5679test"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/sfkhakimov/test-npm-publish.git"
+    },
+    "author": "sfkhakimov",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/sfkhakimov/test-npm-publish/issues"
+    },
+    "homepage": "https://github.com/sfkhakimov/test-npm-publish#readme",
+    "files": [
+        ""
+    ]
+}

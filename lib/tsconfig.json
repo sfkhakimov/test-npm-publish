@@ -1,0 +1,31 @@
+{
+    "compilerOptions": {
+        "target": "es6",
+        "lib": ["dom", "dom.iterable", "esnext"],
+        "declaration": true,
+        "declarationDir": "./types",
+        "allowJs": true,
+        "skipLibCheck": true,
+        "allowSyntheticDefaultImports": true,
+        "strict": true,
+        "forceConsistentCasingInFileNames": true,
+        "noFallthroughCasesInSwitch": true,
+        "isolatedModules": true,
+        "noEmit": true,
+        "jsx": "react",
+        "module": "esnext",
+        "moduleResolution": "node",
+        "baseUrl": ".",
+        "paths": {
+            "components/*": ["common/*"],
+            "constants/*": ["modules/lk/*"],
+            "hooks/*": ["modules/store/*"],
+            "providers/*": ["modules/lk-operator/*"],
+            "utils/*": ["modules/info-center/*"]
+        }
+    },
+    "include": [
+      "src/**/*"
+    ],
+    "exclude": ["../node_modules", "dist"]
+}

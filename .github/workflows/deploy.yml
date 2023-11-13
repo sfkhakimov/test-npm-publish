@@ -1,0 +1,23 @@
+name: Deploy
+on:
+    release:
+        types: [published]
+jobs:
+    tsc-and-linting:
+        uses: ./.github/workflows/tsc-and-lint.yml
+    deploy:
+        needs: [tsc-and-linting]
+        runs-on: ubuntu-latest
+        steps:
+            -   uses: actions/checkout@v3
+            -   uses: actions/setup-node@v3
+                with:
+                    node-version: '20.x'
+                    registry-url: 'https://registry.npmjs.org'
+            -   run: npm ci
+            -   run: npm run lib:build
+            -   run: npm publish
+                env:
+                    NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
+
+
