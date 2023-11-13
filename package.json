@@ -2,15 +2,18 @@
     "name": "test-npm-publish-a",
     "version": "0.0.53",
     "description": "Тестовый npm пакет",
-    "main": "./lib/index.js",
-    "types": "./lib/types/index.d.ts",
+    "workspaces": [
+        "./lib",
+        "./site"
+    ],
     "scripts": {
-        "prepare": "husky install",
-        "preBuild": "rm -rf lib",
-        "build": "npm run preBuild && rollup --config rollup.config.js",
-        "tsc": "tsc",
-        "lint": "eslint --ext .js,.jsx,.ts,.tsx src ",
-        "lint:fix": "eslint --ext .js,.jsx,.ts,.tsx src --fix"
+        "lib:build": "npm run build -w lib",
+        "lib:tsc": "npm run tsc -w lib",
+        "lib:lint": "npm run lint -w lib",
+        "lib:lint:fix": "npm run lint:fix -w lib",
+        "site:start": "npm run start -w site",
+        "site:build": "npm run build -w site",
+        "site:tsc": "npm run typecheck -w site"
     },
     "keywords": [
         "5679test"
@@ -26,28 +29,6 @@
     },
     "homepage": "https://github.com/sfkhakimov/test-npm-publish#readme",
     "files": [
-        "lib"
-    ],
-    "dependencies": {
-        "lodash": "^4.17.20",
-        "react": "^17.0.0-0 || ^18.0.0-0",
-        "react-dom": "^17.0.0-0 || ^18.0.0-0"
-    },
-    "devDependencies": {
-        "@rollup/plugin-typescript": "^11.1.5",
-        "@types/lodash": "^4.14.165",
-        "@types/react": "^17.0.0",
-        "@types/react-dom": "^17.0.0",
-        "@typescript-eslint/eslint-plugin": "^6.10.0",
-        "@typescript-eslint/parser": "^6.10.0",
-        "eslint": "^8.53.0",
-        "eslint-config-prettier": "^9.0.0",
-        "eslint-config-recommended": "^4.1.0",
-        "eslint-plugin-import": "^2.29.0",
-        "husky": "^8.0.0",
-        "prettier": "^2.8.4",
-        "rollup": "^2.79.1",
-        "rollup-plugin-styles": "^4.0.0",
-        "typescript": "^4.9.5"
-    }
+        ""
+    ]
 }
