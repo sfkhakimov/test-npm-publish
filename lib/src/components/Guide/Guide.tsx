@@ -44,7 +44,7 @@ const Guide: React.FC<GuideProps> = ({
     placement,
     onClickHighlighted,
     disableInteraction,
-    ContentComponent,
+    PopperContent,
     Wrapper,
     loadingTimeout = DEFAULT_LOADING_TIMEOUT_DELAY,
     loader = <>Loading...</>,
@@ -212,7 +212,7 @@ const Guide: React.FC<GuideProps> = ({
                     placement={popperPlacement}
                     popperPadding={popperPadding}
                 >
-                    <ContentComponent
+                    <PopperContent
                         currentStep={currentStep}
                         steps={steps}
                         startAt={startAt}

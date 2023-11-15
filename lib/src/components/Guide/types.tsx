@@ -50,7 +50,7 @@ type SharedProps = {
     beforeClose?: (target: Element | null) => void
     onClickHighlighted?: MouseEventHandler<SVGRectElement>
     scrollSmooth?: boolean
-    ContentComponent: ComponentType<PopperContentProps>
+    PopperContent: ComponentType<PopperContentProps>
     Wrapper?: ComponentType
     startAt?: number
     onChangeStep?: (step: StepType, currentStep: number) => Promise<void> | void

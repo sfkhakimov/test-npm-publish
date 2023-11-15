@@ -2,8 +2,10 @@ import React from 'react'
 import Header from '../Header/Header'
 import { BsPlayFill } from 'react-icons/bs'
 import { AiOutlineArrowDown } from 'react-icons/ai'
+import { useGuideHelpers } from 'lib/src'
 
 const Head = () => {
+    const { start } = useGuideHelpers()
     return (
         <div
             style={{
@@ -21,12 +23,16 @@ const Head = () => {
                     </h1>
                 </div>
                 <div className="mx-auto flex max-w-2xl pt-40">
-                    <button className="mr-10 flex rounded-md bg-blue-900 p-3 text-gray-200 shadow-lg shadow-blue-500/50 transition-colors hover:bg-blue-800 active:bg-blue-950">
+                    <button
+                        data-guide="One"
+                        className="mr-10 hidden rounded-md bg-blue-900 p-3 text-gray-200 shadow-lg shadow-blue-500/50 transition-colors hover:bg-blue-800 active:bg-blue-950 lg:flex"
+                        onClick={start}
+                    >
                         <span className="mr-2">Запустить инструкцию</span>
                         <BsPlayFill fontSize="24px" />
                     </button>
                     <button className="flex rounded-md bg-gray-700 p-3 text-gray-200 shadow-lg shadow-blue-500/50 transition-colors hover:bg-gray-600 active:bg-gray-800">
-                        <span className="mr-2">Открыть документацию</span>
+                        <span className="mr-2">Перейти к документации</span>
                         <AiOutlineArrowDown fontSize="24px" />
                     </button>
                 </div>

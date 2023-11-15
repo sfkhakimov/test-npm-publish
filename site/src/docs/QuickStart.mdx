@@ -1,7 +1,67 @@
+---
+title: 'foo'
+---
+
 ## [QuickStart](#quick-start)
 
-Однажды передо мной стояла задача создать большую интерактивную инструкцию с помощью которой можно было провести пользователя по определенному процессу
-пользования сайтом. На тот я пробовал реализовать это с помощью таких библиотек как `react-joyride` и `reactour`. Это классные библиотеки, но не
-совсем подходили под мои условия задачи. Мне нужно было учитывать что элемент может не сразу появится на страницу, или что его размеры могут меняться,
-он может двигаться или пользователь случайно перезагрузит страницу. Тогда мне пришла в голову идея создания новой библиотеки которая решала бы
-эти проблемы
+Для начала необходимо установить пакет:
+
+```commandline
+npm i react-guide
+```
+
+Затем чтобы использовать инструкцию вам нужно обернуть ваше приложение с помощью `GuideProvider` и передать ему шаги вашей инструкции
+в виде `steps`. Также вам нужно передать `PopperContent` который будет отображать ваш контент подсказки:
+
+```tsx
+import React from 'react'
+import { GuideProvider, PopperContentProps } from 'react-guide'
+
+const steps = [
+    {
+        selector: '[data-guide=One]',
+        content: 'Контент первого шага', // Здесь вы можете разместить ваш контент. Это может быть любой JSX.Element
+    },
+    {
+        selector: '[data-guide=Two]',
+        content: 'Контент второго шага',
+    },
+    {
+        selector: '[data-guide=Three]',
+        content: 'Контент третьего шага',
+    },
+]
+
+const PopperContent = ({
+    content,
+    goNextStep,
+    goBackStep,
+    skip,
+}: PopperContentProps) => {
+
+    return (
+        <div>
+            {content}
+            <button onClick={skip}>skip</button>
+            <button onClick={goBackStep}>back</button>
+            <button onClick={goNextStep}>next</button>
+
+        </div>
+    )
+}
+
+const App = ({ children }) => {
+
+    return (
+        <GuideProvider
+            PopperContent={PopperContent}
+            steps={steps}
+        >
+                {children}
+        </GuideProvider>
+    )
+}
+```
+
+
+Если вы захотите управлять инструкцией в ваших компонентах, то вы можете это сделать используя хуки `useGuide` и `useGuideHelper`:
