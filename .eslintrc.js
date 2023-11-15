@@ -1,3 +1,4 @@
+const path = require('path')
 module.exports = {
     extends: [
         'eslint:recommended',
@@ -10,5 +11,12 @@ module.exports = {
     rules: {
         '@typescript-eslint/no-unused-vars': 'off',
         '@typescript-eslint/no-explicit-any': 'off',
+    },
+    parserOptions: {
+    project: [
+        './lib/tsconfig.json',
+        './site/tsconfig.json',
+    ],
+    tsconfigRootDir: path.resolve(__dirname),
     },
 }

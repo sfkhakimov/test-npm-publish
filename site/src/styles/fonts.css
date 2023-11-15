@@ -1,0 +1,32 @@
+@font-face {
+  font-family: 'BalsamiqSans';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src:
+        local("'BalsamiqSans'"),
+        url('./fonts/BalsamiqSans-Regular.ttf') format('truetype')
+    ;
+}
+
+@font-face {
+  font-family: 'BalsamiqSans';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 600;
+  src:
+        local("'BalsamiqSans'"),
+        url('./fonts/BalsamiqSans-Bold.ttf') format('truetype')
+    ;
+}
+
+@font-face {
+  font-family: 'BalsamiqSans';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 700;
+  src:
+        local("'BalsamiqSans'"),
+        url('./fonts/BalsamiqSans-Bold.ttf') format('truetype')
+    ;
+}
