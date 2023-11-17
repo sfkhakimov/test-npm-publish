@@ -1,9 +1,9 @@
 import { RectResult } from '../../utils'
-import { ComponentPadding, PopperRectType } from '../Guide'
+import { ComponentPadding, PopperRectType } from '../Voyager'
 import { usePopper } from './hooks'
 import { defaultStyles } from './styles'
 import './styles.css'
-import { TutorialPopperPlacement } from './types'
+import { VoyagerPopperPlacement } from './types'
 import React, {
     CSSProperties,
     Dispatch,
@@ -18,7 +18,7 @@ export type PopperProps = {
     rootEl: string
     target: Element | null
     children?: React.ReactNode
-    placement?: TutorialPopperPlacement
+    placement?: VoyagerPopperPlacement
     popperPadding?: number | [number, number]
     styles?: CSSProperties
     className?: string
@@ -55,7 +55,7 @@ const Popper: React.FC<PopperProps> = ({
             top: coordinates.y,
             bottom: coordinates.y + (popperRef.current?.clientHeight || 0),
         })
-    }, [coordinates])
+    }, [coordinates, target])
 
     return ReactDOM.createPortal(
         <div

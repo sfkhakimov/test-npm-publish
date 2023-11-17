@@ -3,61 +3,74 @@ import type { PageProps } from 'gatsby'
 import { Head } from '../components/Head'
 import Introduction from '../docs/Introduction.mdx'
 import QuickStart from '../docs/QuickStart.mdx'
-import Navigation from '../components/Navigation/Navigation'
 import { MDXProvider } from '@mdx-js/react'
 import { components } from '../components/Override'
-import { GuideProvider } from 'lib/src'
+import { VoyagerProvider } from 'lib/src'
 import { steps } from '../constants'
 import { PopperContent } from '../components/PopperContent'
 import { Components } from '@mdx-js/react/lib'
 import Types from '../docs/Types.mdx'
+import { Footer } from '../components/Footer'
+import { NextBtn } from '../components/NextBtn'
+import { Column } from '../components/Column'
 
 const sections = [
-    { link: 'introduction', Component: Introduction },
-    { link: 'quick-start', Component: QuickStart },
-    { link: 'types', Component: Types },
+    { link: 'introduction', DocsComponent: Introduction, Component: NextBtn },
+    { link: 'quick-start', DocsComponent: QuickStart, Component: Column },
+    { link: 'types', DocsComponent: Types, Component: NextBtn },
 ]
 
 const IndexPage: React.FC<PageProps> = () => {
     return (
-        <GuideProvider
+        <VoyagerProvider
             PopperContent={PopperContent}
+            localStorageKey="voyager"
             steps={steps}
             disableInteraction
         >
             <div>
-                <div
-                    style={{
-                        background:
-                            'radial-gradient(at center, #4b5563, #1f2937)',
-                    }}
-                >
+                <div className="bg-gradient-to-tr from-slate-800 to-slate-700">
                     <Head />
                 </div>
                 <div>
-                    <main className="bg-gray-800">
-                        <div
-                            className="mx-auto flex max-w-screen-xl flex-col px-4 pt-12 text-gray-200"
-                            data-guide="Two"
-                        >
+                    <main className="bg-slate-900">
+                        <div className="mx-auto flex max-w-screen-xl flex-col px-4 pt-12 text-gray-200">
                             <MDXProvider components={components as Components}>
-                                {sections.map(({ link, Component }) => (
-                                    // <Element name={link}>
-                                    <section
-                                        className="pb-14 pt-2"
-                                        id={link}
-                                        data-guide={link}
-                                    >
-                                        <Component />
-                                    </section>
-                                    // </Element>
-                                ))}
+                                {sections.map(
+                                    ({ link, DocsComponent, Component }, i) => (
+                                        <section
+                                            className={`flex ${
+                                                (i + 1) % 2 === 0
+                                                    ? 'flex-row-reverse'
+                                                    : ''
+                                            } justify-between pb-14 pt-2`}
+                                        >
+                                            <div
+                                                id={link}
+                                                data-voyager={link}
+                                                className="max-w-[900px] overflow-hidden"
+                                            >
+                                                <DocsComponent />
+                                            </div>
+                                            <div
+                                                className={`${
+                                                    (i + 1) % 2 === 0
+                                                        ? 'pr-4'
+                                                        : 'pl-4'
+                                                } hidden md:block`}
+                                            >
+                                                <Component />
+                                            </div>
+                                        </section>
+                                    ),
+                                )}
                             </MDXProvider>
                         </div>
                     </main>
+                    <Footer />
                 </div>
             </div>
-        </GuideProvider>
+        </VoyagerProvider>
     )
 }
 

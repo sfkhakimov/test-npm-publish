@@ -40,16 +40,26 @@ export const Pre: React.FC<Props> = (props) => {
                     className="group relative my-4 overflow-scroll rounded p-4 text-sm"
                     ref={codeRef}
                 >
-                    <div className="absolute right-4 top-4 cursor-pointer rounded-md border p-2 opacity-0 transition hover:border-blue-300 hover:text-blue-300 group-hover:opacity-100">
-                        <Icon onClick={copyToClipboard} />
+                    <div
+                        onClick={copyToClipboard}
+                        className="absolute right-2.5 top-2.5 cursor-pointer rounded-md border p-2 opacity-0 transition hover:border-blue-300 hover:text-blue-300 group-hover:opacity-100"
+                    >
+                        <Icon />
                     </div>
-                    {tokens.map((line, i) => (
-                        <div key={i} {...getLineProps({ line })}>
-                            {line.map((token, key) => (
-                                <span key={key} {...getTokenProps({ token })} />
-                            ))}
-                        </div>
-                    ))}
+                    {tokens.map((line, i) =>
+                        i === tokens.length - 1 &&
+                        line.length === 1 &&
+                        line[0].empty ? null : (
+                            <div key={i} {...getLineProps({ line })}>
+                                {line.map((token, key) => (
+                                    <span
+                                        key={key}
+                                        {...getTokenProps({ token })}
+                                    />
+                                ))}
+                            </div>
+                        ),
+                    )}
                 </pre>
             )}
         </Highlight>

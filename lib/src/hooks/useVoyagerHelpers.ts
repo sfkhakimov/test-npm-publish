@@ -1,12 +1,12 @@
-import { StepType } from '../components/Guide'
-import { GuideStatusesEnum } from '../constants/constants'
-import { useGuideAllStore } from '../providers/GuideProvider'
+import { StepType } from '../components/Voyager'
+import { VoyagerStatusesEnum } from '../constants/constants'
+import { useVoyagerAllStore } from '../providers/VoyagerProvider'
 import { useEvent } from './useEvent'
 import { merge } from 'lodash'
 import { useMemo } from 'react'
 
-export const useGuideHelpers = () => {
-    const store = useGuideAllStore()
+export const useVoyagerHelpers = () => {
+    const store = useVoyagerAllStore()
 
     const {
         setCurrentStep,
@@ -32,7 +32,7 @@ export const useGuideHelpers = () => {
         await beforeStart?.()
 
         setCurrentStep(startAt)
-        setStatus(GuideStatusesEnum.Active)
+        setStatus(VoyagerStatusesEnum.Active)
 
         await afterStart?.()
     })
@@ -40,7 +40,7 @@ export const useGuideHelpers = () => {
     const stop = useEvent(async () => {
         await beforeStop?.()
 
-        setStatus(GuideStatusesEnum.Stopped)
+        setStatus(VoyagerStatusesEnum.Stopped)
         setCurrentStep(startAt)
 
         await afterStop?.()
@@ -50,7 +50,7 @@ export const useGuideHelpers = () => {
         if (!isOpen) return
 
         if (isLastStep) {
-            setStatus(GuideStatusesEnum.Completed)
+            setStatus(VoyagerStatusesEnum.Completed)
             setCurrentStep(startAt)
             return
         }
@@ -68,7 +68,7 @@ export const useGuideHelpers = () => {
 
     const skip = useEvent(() => {
         if (!isOpen) return
-        setStatus(GuideStatusesEnum.Skipped)
+        setStatus(VoyagerStatusesEnum.Skipped)
     })
 
     const goToStep = useEvent((newStep: number) => {

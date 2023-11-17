@@ -1,6 +1,9 @@
-import Guide from '../../components/Guide/Guide'
-import { GuideProviderProps, GuideContextType } from '../../components/Guide'
-import { GuideStatusesEnum } from '../../constants/constants'
+import Voyager from '../../components/Voyager/Voyager'
+import {
+    VoyagerProviderProps,
+    VoyagerContextType,
+} from '../../components/Voyager'
+import { VoyagerStatusesEnum } from '../../constants/constants'
 import { useLocalStorage } from '../../hooks'
 import React, { useContext, useEffect, useMemo, useState } from 'react'
 
@@ -13,7 +16,7 @@ const defaultState = {
     setStatus: () => {
         return
     },
-    status: GuideStatusesEnum.Idle,
+    status: VoyagerStatusesEnum.Idle,
     localStorageKey: undefined,
     prevStep: undefined,
     currStep: undefined,
@@ -32,9 +35,9 @@ const defaultState = {
     },
 }
 
-const GuideContext = React.createContext<GuideContextType>(defaultState)
+const VoyagerContext = React.createContext<VoyagerContextType>(defaultState)
 
-export const useGuide = () => {
+export const useVoyager = () => {
     const {
         isOpen,
         currentStep,
@@ -44,7 +47,7 @@ export const useGuide = () => {
         prevStep,
         startAt,
         status,
-    } = useContext(GuideContext)
+    } = useContext(VoyagerContext)
 
     return {
         isOpen,
@@ -57,9 +60,9 @@ export const useGuide = () => {
         status,
     }
 }
-export const useGuideAllStore = () => useContext(GuideContext)
+export const useVoyagerAllStore = () => useContext(VoyagerContext)
 
-export const GuideProvider: React.FC<GuideProviderProps> = (props) => {
+export const VoyagerProvider: React.FC<VoyagerProviderProps> = (props) => {
     const {
         children,
         defaultOpen = false,
@@ -76,13 +79,13 @@ export const GuideProvider: React.FC<GuideProviderProps> = (props) => {
     const [currentStep, setCurrentStep] = useState(startAt)
     const [steps, setSteps] = useState(defaultSteps)
     const [status, setStatus] = useState(
-        defaultOpen ? GuideStatusesEnum.Active : GuideStatusesEnum.Idle
+        defaultOpen ? VoyagerStatusesEnum.Active : VoyagerStatusesEnum.Idle
     )
     const isOpen =
         [
-            GuideStatusesEnum.Paused,
-            GuideStatusesEnum.Active,
-            GuideStatusesEnum.Waiting,
+            VoyagerStatusesEnum.Paused,
+            VoyagerStatusesEnum.Active,
+            VoyagerStatusesEnum.Waiting,
         ].includes(status) && !!steps.length
 
     useLocalStorage({
@@ -134,9 +137,9 @@ export const GuideProvider: React.FC<GuideProviderProps> = (props) => {
     }, [defaultSteps])
 
     return (
-        <GuideContext.Provider value={value}>
+        <VoyagerContext.Provider value={value}>
             {children}
-            {isOpen ? <Guide {...other} /> : null}
-        </GuideContext.Provider>
+            {isOpen ? <Voyager {...other} /> : null}
+        </VoyagerContext.Provider>
     )
 }

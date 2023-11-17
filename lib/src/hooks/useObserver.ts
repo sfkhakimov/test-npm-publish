@@ -1,4 +1,4 @@
-import { StepType } from '../components/Guide/types'
+import { StepType } from '../components/Voyager/types'
 import { useMutationObserver } from './useMutationObserver'
 import { useResizeObserver } from './useResizeObserver'
 import { debounce, throttle } from 'lodash'

@@ -1,14 +1,14 @@
 import { getByKey, saveByKey } from '../utils'
-import { GuideStatusesEnum } from '../constants/constants'
+import { VoyagerStatusesEnum } from '../constants/constants'
 import { isEmpty } from 'lodash'
 import { Dispatch, SetStateAction, useEffect } from 'react'
 
-export type TutorialLocalStorageArgs = {
-    status: GuideStatusesEnum
+export type VoyagerLocalStorageArgs = {
+    status: VoyagerStatusesEnum
     currentStep: number
     localStorageKey?: string
 
-    setStatus: Dispatch<SetStateAction<GuideStatusesEnum>>
+    setStatus: Dispatch<SetStateAction<VoyagerStatusesEnum>>
     setCurrentStep: Dispatch<SetStateAction<number>>
 }
 
@@ -19,7 +19,7 @@ export const useLocalStorage = ({
 
     setStatus,
     setCurrentStep,
-}: TutorialLocalStorageArgs) => {
+}: VoyagerLocalStorageArgs) => {
     useEffect(() => {
         if (!localStorageKey) return
         const obj = getByKey(localStorageKey)
@@ -28,12 +28,12 @@ export const useLocalStorage = ({
 
         const { status, currentStep } = obj
 
-        setStatus(status as GuideStatusesEnum)
+        setStatus(status as VoyagerStatusesEnum)
         setCurrentStep(currentStep as number)
     }, [localStorageKey])
 
     useEffect(() => {
-        if (!localStorageKey || status === GuideStatusesEnum.Idle) return
+        if (!localStorageKey || status === VoyagerStatusesEnum.Idle) return
 
         saveByKey(localStorageKey, {
             status,

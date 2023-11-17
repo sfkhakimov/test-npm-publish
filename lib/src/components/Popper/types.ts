@@ -1,4 +1,4 @@
-export type TutorialPopperPlacement =
+export type VoyagerPopperPlacement =
     | 'left'
     | 'left-start'
     | 'left-end'

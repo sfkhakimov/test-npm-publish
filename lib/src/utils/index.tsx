@@ -7,6 +7,5 @@ export {
     removeByKey,
     updateByKey,
 } from './helpers'
-export { smoothScroll } from './smoothScroll'
 
 export type { RectResult } from './types'

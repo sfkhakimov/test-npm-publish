@@ -6,7 +6,9 @@ const Header = () => {
     return (
         <div className="flex h-16 items-center justify-center border-b border-b-gray-200">
             <div className="mx-4 flex w-full max-w-screen-xl justify-between">
-                <h1 className="text-3xl font-bold text-gray-200">ReactGuide</h1>
+                <h1 className="text-3xl font-bold text-gray-200">
+                    ReactVoyager
+                </h1>
                 <div className="flex items-center justify-center">
                     <a
                         href="https://yandex.ru"

@@ -1,8 +1,11 @@
-import { PopperRectType } from '../components/Guide'
-import { RectResult, smoothScroll } from '../utils'
-import { ScrollOptionsType } from '../utils/smoothScroll'
-import { debounce } from 'lodash'
+import { ComponentPadding, PopperRectType } from '../components/Voyager'
+import { RectResult } from '../utils'
+import { debounce, isArray } from 'lodash'
 import { useCallback, useEffect } from 'react'
+
+type ScrollOptionsType = {
+    padding?: ComponentPadding
+} & ScrollIntoViewOptions
 
 type Args = {
     scrollOptions: ScrollOptionsType
@@ -10,6 +13,9 @@ type Args = {
     sizes: RectResult
 }
 
+const DEFAULT_INDENT = 10
+
+// TODO добавить проверку что если элемент имееет fixed то скролл не делать
 export const useScroll = ({ scrollOptions, popperRect, sizes }: Args) => {
     const debounceScrollToElem = useCallback(
         debounce(
@@ -29,12 +35,14 @@ export const useScroll = ({ scrollOptions, popperRect, sizes }: Args) => {
                     bottom: Math.max(popperRect.bottom, sizes.bottom),
                 }
 
-                void smoothScroll({
-                    options: scrollOptions,
-                    top,
-                    left,
-                    right,
-                    bottom,
+                const { padding = [0, 0], ...other } = scrollOptions
+
+                const [px, py] = isArray(padding) ? padding : [padding, padding]
+
+                window.scrollTo({
+                    top: top - py - DEFAULT_INDENT,
+                    left: left - px - DEFAULT_INDENT,
+                    ...other,
                 })
             },
             100

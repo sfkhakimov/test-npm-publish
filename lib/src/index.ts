@@ -1,14 +1,20 @@
-import { Guide } from './components/Guide'
-import { GuideStatusesEnum } from './constants/constants'
-import { useGuideHelpers } from './hooks'
-import { GuideProvider, useGuide } from './providers/GuideProvider'
+import { Voyager } from './components/Voyager'
+import { VoyagerStatusesEnum } from './constants/constants'
+import { useVoyagerHelpers } from './hooks'
+import { VoyagerProvider, useVoyager } from './providers/VoyagerProvider'
 
-export { Guide, GuideProvider, useGuide, useGuideHelpers, GuideStatusesEnum }
+export {
+    Voyager,
+    VoyagerProvider,
+    useVoyager,
+    useVoyagerHelpers,
+    VoyagerStatusesEnum,
+}
 
 export type {
     StepType,
-    GuideProviderProps,
-    GuideProps,
+    VoyagerProviderProps,
+    VoyagerProps,
     PopperContentProps,
-    GuideHelpersType,
-} from './components/Guide/types'
+    VoyagerHelpersType,
+} from './components/Voyager/types'

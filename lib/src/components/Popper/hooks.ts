@@ -1,13 +1,13 @@
 import { getDocumentSizes, RectResult, getPadding } from '../../utils'
-import { ComponentPadding } from '../Guide'
-import { TutorialPopperPlacement } from './types'
+import { ComponentPadding } from '../Voyager'
+import { VoyagerPopperPlacement } from './types'
 import { calculatePopperPosition } from './utils'
 import { useState, useEffect, RefObject } from 'react'
 
 type UsePopperArgs = {
     target: Element | null
     popperRef: RefObject<HTMLDivElement | null>
-    placement: TutorialPopperPlacement
+    placement: VoyagerPopperPlacement
     popperPadding: number | [number, number]
     sizes: RectResult
     maskPadding?: ComponentPadding
@@ -22,7 +22,7 @@ export const usePopper = ({
 }: UsePopperArgs) => {
     const [coordinates, setCoordinates] = useState({ x: 0, y: 0 })
     const [popperPlacement, setPopperPlacement] =
-        useState<TutorialPopperPlacement>(placement)
+        useState<VoyagerPopperPlacement>(placement)
 
     const popperSizes = {
         width: popperRef.current?.clientWidth || 0,

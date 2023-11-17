@@ -1,4 +1,4 @@
-import { StepType } from '../components/Guide'
+import { StepType } from '../components/Voyager'
 import { getRect, RectResult } from '../utils'
 import useObserver from './useObserver'
 import { useEffect, useCallback, useState, useRef } from 'react'

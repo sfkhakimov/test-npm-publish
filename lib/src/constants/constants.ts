@@ -1,4 +1,4 @@
-export enum GuideStatusesEnum {
+export enum VoyagerStatusesEnum {
     Idle = 'Idle',
     Waiting = 'Waiting',
     Active = 'Active',

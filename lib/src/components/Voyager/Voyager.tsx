@@ -1,10 +1,10 @@
-import { GuideStatusesEnum } from '../../constants/constants'
-import { useScroll, useSizes, useGuideHelpers } from '../../hooks'
-import { useGuideAllStore } from '../../providers/GuideProvider'
+import { VoyagerStatusesEnum } from '../../constants/constants'
+import { useScroll, useSizes, useVoyagerHelpers } from '../../hooks'
+import { useVoyagerAllStore } from '../../providers/VoyagerProvider'
 import { getStepToDisplayAfterReloadPage } from '../../utils/helpers'
 import { Mask } from '../Mask'
 import { Popper } from '../Popper'
-import { Padding, PopperRectType, GuideProps } from './types'
+import { Padding, PopperRectType, VoyagerProps } from './types'
 import React, { useEffect, useMemo, useState } from 'react'
 
 let timerId: NodeJS.Timeout
@@ -34,7 +34,7 @@ const initialPopperRectState: PopperRectType = {
     bottom: 0,
 }
 
-const Guide: React.FC<GuideProps> = ({
+const Voyager: React.FC<VoyagerProps> = ({
     rootEl = 'body',
     styles: globalStyles = {},
     scrollSmooth = true,
@@ -50,7 +50,7 @@ const Guide: React.FC<GuideProps> = ({
     loader = <>Loading...</>,
     onChangeStep,
 }) => {
-    const store = useGuideAllStore()
+    const store = useVoyagerAllStore()
     const {
         setCurrentStep,
         setStatus,
@@ -63,7 +63,7 @@ const Guide: React.FC<GuideProps> = ({
         nextStep,
         prevStep,
     } = store
-    const helpers = useGuideHelpers()
+    const helpers = useVoyagerHelpers()
     const [referenceEl, setReferenceEl] = useState<Element | null>(null)
 
     const step = steps[currentStep]
@@ -112,14 +112,16 @@ const Guide: React.FC<GuideProps> = ({
 
     const popperPlacement = step?.placement || placement
 
-    const GuideWrapper = Wrapper ? Wrapper : React.Fragment
+    const VoyagerWrapper = Wrapper ? Wrapper : React.Fragment
 
     const canViewComponent =
         step &&
-        [GuideStatusesEnum.Active, GuideStatusesEnum.Waiting].includes(status)
+        [VoyagerStatusesEnum.Active, VoyagerStatusesEnum.Waiting].includes(
+            status
+        )
 
     const canViewLoader =
-        isInitialLoading || status === GuideStatusesEnum.Waiting
+        isInitialLoading || status === VoyagerStatusesEnum.Waiting
 
     useEffect(() => {
         afterOpen?.(targetRef.current)
@@ -134,7 +136,7 @@ const Guide: React.FC<GuideProps> = ({
 
             timerId = setTimeout(() => {
                 setIsInitialLoading(false)
-                setStatus(GuideStatusesEnum.Stopped)
+                setStatus(VoyagerStatusesEnum.Stopped)
                 console.error('Element not found for instruction.')
                 clearTimeout(timerId)
             }, loadingTimeout)
@@ -149,22 +151,22 @@ const Guide: React.FC<GuideProps> = ({
 
     useEffect(() => {
         if (target) {
-            setStatus(GuideStatusesEnum.Active)
+            setStatus(VoyagerStatusesEnum.Active)
             return
         }
 
         if (isFirstStep) return
 
-        setStatus(GuideStatusesEnum.Waiting)
+        setStatus(VoyagerStatusesEnum.Waiting)
     }, [target, isFirstStep])
 
     useEffect(() => {
-        if (status !== GuideStatusesEnum.Waiting) {
+        if (status !== VoyagerStatusesEnum.Waiting) {
             return clearTimeout(stepTimerId)
         }
 
         stepTimerId = setTimeout(() => {
-            setStatus(GuideStatusesEnum.Paused)
+            setStatus(VoyagerStatusesEnum.Paused)
 
             return () => {
                 clearTimeout(stepTimerId)
@@ -185,7 +187,7 @@ const Guide: React.FC<GuideProps> = ({
     }, [])
 
     return canViewComponent ? (
-        <GuideWrapper>
+        <VoyagerWrapper>
             <Mask
                 rootEl={rootEl}
                 setReferenceEl={setReferenceEl}
@@ -226,8 +228,8 @@ const Guide: React.FC<GuideProps> = ({
                     />
                 </Popper>
             )}
-        </GuideWrapper>
+        </VoyagerWrapper>
     ) : null
 }
 
-export default Guide
+export default Voyager

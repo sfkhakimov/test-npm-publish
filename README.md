@@ -1,4 +1,4 @@
-# react-guide 
+# react-voyager 
 A library that allows you to create stunning interactive guides.
 
 ## [Introduction](#introduction)
@@ -15,27 +15,27 @@ It might move, or the user could accidentally reload the page. That's when the i
 To get started, you need to install the package:
 
 ```commandline
-npm install react-guide
+npm install react-voyager
 ```
 
-Then, to use the guide, you need to wrap your application with the `GuideProvider` and pass it the steps of your guide as well
+Then, to use the guide, you need to wrap your application with the `VoyagerProvider` and pass it the steps of your guide as well
 as the `PopperContent` that will display your tooltip content:
 
 ```tsx
 import React from 'react';
-import { GuideProvider, PopperContentProps } from 'react-guide';
+import { VoyagerProvider, PopperContentProps } from 'react-voyager';
 
 const steps = [
     {
-        selector: '[data-guide=One]',
+        selector: '[data-voyager=One]',
         content: 'Content of the first step', // Here you can place your content. It can be any JSX.Element
     },
     {
-        selector: '[data-guide=Two]',
+        selector: '[data-voyager=Two]',
         content: 'Content of the second step',
     },
     {
-        selector: '[data-guide=Three]',
+        selector: '[data-voyager=Three]',
         content: 'Content of the third step',
     },
 ];
@@ -58,28 +58,28 @@ const PopperContent = ({
 
 const App = ({ children }) => {
     return (
-        <GuideProvider
+        <VoyagerProvider
             PopperContent={PopperContent}
             steps={steps}
         >
             {children}
-        </GuideProvider>
+        </VoyagerProvider>
     );
 };
 ```
 
 
-To initiate the guide, you need to call the `start` function from `useGuideHelpers`:
+To initiate the guide, you need to call the `start` function from `useVoyagerHelpers`:
 
 ```tsx
-import { useGuideHelpers } from 'react-guide';
+import { useVoyagerHelpers } from 'react-voyager';
 
 const MyComponent = () => {
-    const { start } = useGuideHelpers();
+    const { start } = useVoyagerHelpers();
     return (
         <div>
             ...some content here
-            <button onClick={start}>Start guide</button>
+            <button onClick={start}>Start voyage</button>
         </div>
     );
 };
@@ -89,7 +89,7 @@ const MyComponent = () => {
 
 <br />
 
-### GuideProviderProps
+### VoyagerProviderProps:
 
 <br />
 
@@ -121,7 +121,7 @@ const MyComponent = () => {
 
 `PopperContent`: component to be passed as the tooltip content
 
-`Wrapper?`: wrapper component for all `GuideProvider` components. Default is `React.Fragment`
+`Wrapper?`: wrapper component for all `VoyagerProvider` components. Default is `React.Fragment`
 
 `onChangeStep?`: asynchronous function that will be called when the step changes
 
@@ -140,7 +140,7 @@ const MyComponent = () => {
 
 <br />
 
-### StepType
+### StepType:
 
 <br />
 

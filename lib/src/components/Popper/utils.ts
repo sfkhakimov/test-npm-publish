@@ -1,4 +1,4 @@
-import { TutorialPopperPlacement } from './types'
+import { VoyagerPopperPlacement } from './types'
 
 type Coordinates = {
     x: number
@@ -7,7 +7,7 @@ type Coordinates = {
 
 type Result = {
     coordinates: Coordinates
-    placement: TutorialPopperPlacement
+    placement: VoyagerPopperPlacement
 }
 
 type Args = {
@@ -25,7 +25,7 @@ type Args = {
         width: number
         height: number
     }
-    placement: TutorialPopperPlacement
+    placement: VoyagerPopperPlacement
     popperPadding: [number, number]
     maskPadding: [number, number]
 }
@@ -47,7 +47,7 @@ export const calculatePopperPosition = ({
     const width = sizes.width + maskPadding[0] * 2
     const height = sizes.height + maskPadding[1] * 2
 
-    const placements: Record<TutorialPopperPlacement, Coordinates> = {
+    const placements: Record<VoyagerPopperPlacement, Coordinates> = {
         left: {
             x: x - popperWidth - paddingX,
             y: y + (height - popperHeight) / 2,
@@ -93,7 +93,7 @@ export const calculatePopperPosition = ({
     }
 
     for (const altPlacement in placements) {
-        const placement = altPlacement as TutorialPopperPlacement
+        const placement = altPlacement as VoyagerPopperPlacement
         if (
             placements[placement].x >= 0 &&
             placements[placement].y >= 0 &&

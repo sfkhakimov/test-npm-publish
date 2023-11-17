@@ -1,5 +1,5 @@
-import { GuideStatusesEnum } from '../../constants/constants'
-import { TutorialPopperPlacement } from '../Popper/types'
+import { VoyagerStatusesEnum } from '../../constants/constants'
+import { VoyagerPopperPlacement } from '../Popper/types'
 import {
     ReactNode,
     Dispatch,
@@ -17,7 +17,7 @@ export type PopperRectType = {
     bottom: number
 }
 
-export type GuideHelpersType = {
+export type VoyagerHelpersType = {
     start: () => Promise<void>
     stop: () => Promise<void>
     skip: () => void
@@ -44,7 +44,7 @@ type SharedProps = {
     steps: StepType[]
     styles?: StylesType
     padding?: Padding
-    placement?: TutorialPopperPlacement
+    placement?: VoyagerPopperPlacement
     disableInteraction?: boolean
     afterOpen?: (target: Element | null) => void
     beforeClose?: (target: Element | null) => void
@@ -56,7 +56,9 @@ type SharedProps = {
     onChangeStep?: (step: StepType, currentStep: number) => Promise<void> | void
 }
 
-export type PopperContentProps = GuideStoreType & GuideHelpersType & StepType
+export type PopperContentProps = VoyagerStoreType &
+    VoyagerHelpersType &
+    StepType
 
 export type ComponentPadding = number | [number, number]
 export type Padding =
@@ -67,14 +69,14 @@ export type Padding =
           wrapper?: ComponentPadding
       }
 
-type GuideContextSetStatesType = {
+type VoyagerContextSetStatesType = {
     setSteps: Dispatch<React.SetStateAction<StepType[]>>
-    setStatus: Dispatch<SetStateAction<GuideStatusesEnum>>
+    setStatus: Dispatch<SetStateAction<VoyagerStatusesEnum>>
     setCurrentStep: Dispatch<React.SetStateAction<number>>
 }
 
-export type GuideStoreType = {
-    status: GuideStatusesEnum
+export type VoyagerStoreType = {
+    status: VoyagerStatusesEnum
     prevStep?: StepType
     currStep?: StepType
     nextStep?: StepType
@@ -83,19 +85,19 @@ export type GuideStoreType = {
     steps: StepType[]
 } & Pick<SharedProps, 'startAt'>
 
-export type GuideContextType = GuideStoreType &
-    GuideContextSetStatesType &
+export type VoyagerContextType = VoyagerStoreType &
+    VoyagerContextSetStatesType &
     Pick<
-        GuideProviderProps,
+        VoyagerProviderProps,
         'beforeStart' | 'beforeStop' | 'afterStart' | 'afterStop'
     >
 
-export type GuideProps = Omit<
+export type VoyagerProps = Omit<
     SharedProps,
     'defaultOpen' | 'localStorageKey' | 'steps'
 >
 
-export type GuideProviderProps = SharedProps & {
+export type VoyagerProviderProps = SharedProps & {
     children: React.ReactNode
     defaultOpen?: boolean
     startAt?: number
@@ -109,7 +111,7 @@ export type StepType = {
     selector: string
     title?: ReactNode | ((props: PopperContentProps) => void)
     content: ReactNode | ((props: PopperContentProps) => void)
-    placement?: TutorialPopperPlacement
+    placement?: VoyagerPopperPlacement
     stepInteraction?: boolean
     padding?: Padding
     styles?: StylesType
