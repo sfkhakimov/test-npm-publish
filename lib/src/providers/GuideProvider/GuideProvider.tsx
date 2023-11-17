@@ -1,5 +1,5 @@
 import Guide from '../../components/Guide/Guide'
-import { ProviderProps, GuideContextType } from '../../components/Guide'
+import { GuideProviderProps, GuideContextType } from '../../components/Guide'
 import { GuideStatusesEnum } from '../../constants/constants'
 import { useLocalStorage } from '../../hooks'
 import React, { useContext, useEffect, useMemo, useState } from 'react'
@@ -59,7 +59,7 @@ export const useGuide = () => {
 }
 export const useGuideAllStore = () => useContext(GuideContext)
 
-export const GuideProvider: React.FC<ProviderProps> = (props) => {
+export const GuideProvider: React.FC<GuideProviderProps> = (props) => {
     const {
         children,
         defaultOpen = false,

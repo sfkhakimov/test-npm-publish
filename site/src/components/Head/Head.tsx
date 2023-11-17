@@ -1,21 +1,40 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import Header from '../Header/Header'
 import { BsPlayFill } from 'react-icons/bs'
 import { AiOutlineArrowDown } from 'react-icons/ai'
 import { useGuideHelpers } from 'lib/src'
+import Typed from 'typed.js'
 
 const Head = () => {
     const { start } = useGuideHelpers()
+    const el = useRef(null)
+
+    useEffect(() => {
+        const typed = new Typed(el.current, {
+            strings: [
+                'ReactGuide - простая библиотека для интерактивных инструкций!',
+                'ReactGuide - имеет понятное api!',
+                'ReactGuide - отличное решение для создания обучающих инструкций!',
+            ],
+            typeSpeed: 10,
+            loop: true,
+        })
+
+        return () => {
+            // Destroy Typed instance during cleanup to stop animation
+            typed.destroy()
+        }
+    }, [])
+
     return (
         <div
             style={{
                 height: '100vh',
                 width: '100vw',
             }}
-            className="flex"
         >
+            <Header />
             <div className="mx-auto flex max-w-screen-xl flex-1 flex-col">
-                <Header />
                 <div className="flex items-center justify-center pt-48">
                     <h1 className="max-w-5xl text-center text-5xl font-semibold text-gray-200">
                         ReactGuide библиотека для создания интерактивных
@@ -32,9 +51,17 @@ const Head = () => {
                         <BsPlayFill fontSize="24px" />
                     </button>
                     <button className="flex rounded-md bg-gray-700 p-3 text-gray-200 shadow-lg shadow-blue-500/50 transition-colors hover:bg-gray-600 active:bg-gray-800">
-                        <span className="mr-2">Перейти к документации</span>
+                        <a className="mr-2" href="#introduction">
+                            Перейти к документации
+                        </a>
                         <AiOutlineArrowDown fontSize="24px" />
                     </button>
+                </div>
+                <div
+                    className="mx-auto mt-24 rounded bg-stone-900/50 p-2"
+                    data-guide="Three"
+                >
+                    <span ref={el} className="text-gray-200" />
                 </div>
             </div>
         </div>

@@ -7,7 +7,7 @@ export { Guide, GuideProvider, useGuide, useGuideHelpers, GuideStatusesEnum }
 
 export type {
     StepType,
-    ProviderProps,
+    GuideProviderProps,
     GuideProps,
     PopperContentProps,
     GuideHelpersType,

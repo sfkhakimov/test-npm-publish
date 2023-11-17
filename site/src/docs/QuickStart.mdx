@@ -1,7 +1,3 @@
----
-title: 'foo'
----
-
 ## [QuickStart](#quick-start)
 
 Для начала необходимо установить пакет:
@@ -64,4 +60,18 @@ const App = ({ children }) => {
 ```
 
 
-Если вы захотите управлять инструкцией в ваших компонентах, то вы можете это сделать используя хуки `useGuide` и `useGuideHelper`:
+Чтобы запустить инструкцию вам нужно вызвать функцию `start` из `useGuideHelper`:
+
+```tsx
+import { useGuideHelpers } from 'react-guide'
+
+const MyComponent = () => {
+    const { start } = useGuideHelpers()
+    return (
+        <div>
+            ...тут какой-то контент
+            <button onClick={start}>Start guide</button>
+        </div>
+    )
+}
+```

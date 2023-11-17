@@ -86,7 +86,7 @@ export type GuideStoreType = {
 export type GuideContextType = GuideStoreType &
     GuideContextSetStatesType &
     Pick<
-        ProviderProps,
+        GuideProviderProps,
         'beforeStart' | 'beforeStop' | 'afterStart' | 'afterStop'
     >
 
@@ -95,7 +95,7 @@ export type GuideProps = Omit<
     'defaultOpen' | 'localStorageKey' | 'steps'
 >
 
-export type ProviderProps = SharedProps & {
+export type GuideProviderProps = SharedProps & {
     children: React.ReactNode
     defaultOpen?: boolean
     startAt?: number
@@ -110,12 +110,8 @@ export type StepType = {
     title?: ReactNode | ((props: PopperContentProps) => void)
     content: ReactNode | ((props: PopperContentProps) => void)
     placement?: TutorialPopperPlacement
-    highlightedSelectors?: string[]
-    navDotAriaLabel?: string
     stepInteraction?: boolean
-    action?: (elem: Element | null) => void
     padding?: Padding
-    bypassElem?: boolean
     styles?: StylesType
     loadingTimeout?: number
     onBeforeStep?: () => Promise<void> | void

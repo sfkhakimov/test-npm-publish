@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 import type { PageProps } from 'gatsby'
 import { Head } from '../components/Head'
 import Introduction from '../docs/Introduction.mdx'
@@ -10,6 +10,13 @@ import { GuideProvider } from 'lib/src'
 import { steps } from '../constants'
 import { PopperContent } from '../components/PopperContent'
 import { Components } from '@mdx-js/react/lib'
+import Types from '../docs/Types.mdx'
+
+const sections = [
+    { link: 'introduction', Component: Introduction },
+    { link: 'quick-start', Component: QuickStart },
+    { link: 'types', Component: Types },
+]
 
 const IndexPage: React.FC<PageProps> = () => {
     return (
@@ -26,18 +33,23 @@ const IndexPage: React.FC<PageProps> = () => {
                 <div>
                     <main className="bg-gray-800">
                         <div
-                            className="divider-x mx-auto grid h-full max-w-screen-xl grid-cols-6 gap-4 px-4 pt-12 text-gray-200"
+                            className="mx-auto grid h-full max-w-screen-xl grid-cols-6 gap-4 px-4 pt-12 text-gray-200"
                             data-guide="Two"
                         >
                             <MDXProvider components={components as Components}>
-                                <div className="lg:col-end-0 hidden lg:block">
-                                    <Navigation />
-                                </div>
+                                {/*<div className="lg:col-end-0 hidden pt-2 lg:block">*/}
+                                {/*    <Navigation />*/}
+                                {/*</div>*/}
                                 <div className="col-span-6 lg:col-span-5">
-                                    {[Introduction, QuickStart].map((Item) => (
-                                        <section className="pb-14">
-                                            <Item />
+                                    {sections.map(({ link, Component }) => (
+                                        // <Element name={link}>
+                                        <section
+                                            className="pb-14 pt-2"
+                                            id={link}
+                                        >
+                                            <Component />
                                         </section>
+                                        // </Element>
                                     ))}
                                 </div>
                             </MDXProvider>
