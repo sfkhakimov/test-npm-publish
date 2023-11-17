@@ -1,32 +1,32 @@
-## [QuickStart](#quick-start)
+## [Quick Start](#quick-start)
 
-Для начала необходимо установить пакет:
+To get started, you need to install the package:
 
 ```commandline
-npm i react-guide
+npm install react-guide
 ```
 
-Затем чтобы использовать инструкцию вам нужно обернуть ваше приложение с помощью `GuideProvider` и передать ему шаги вашей инструкции
-в виде `steps`. Также вам нужно передать `PopperContent` который будет отображать ваш контент подсказки:
+Then, to use the guide, you need to wrap your application with the `GuideProvider` and pass it the steps of your guide as well
+as the `PopperContent` that will display your tooltip content:
 
 ```tsx
-import React from 'react'
-import { GuideProvider, PopperContentProps } from 'react-guide'
+import React from 'react';
+import { GuideProvider, PopperContentProps } from 'react-guide';
 
 const steps = [
     {
         selector: '[data-guide=One]',
-        content: 'Контент первого шага', // Здесь вы можете разместить ваш контент. Это может быть любой JSX.Element
+        content: 'Content of the first step', // Here you can place your content. It can be any JSX.Element
     },
     {
         selector: '[data-guide=Two]',
-        content: 'Контент второго шага',
+        content: 'Content of the second step',
     },
     {
         selector: '[data-guide=Three]',
-        content: 'Контент третьего шага',
+        content: 'Content of the third step',
     },
-]
+];
 
 const PopperContent = ({
     content,
@@ -34,44 +34,41 @@ const PopperContent = ({
     goBackStep,
     skip,
 }: PopperContentProps) => {
-
     return (
         <div>
             {content}
             <button onClick={skip}>skip</button>
             <button onClick={goBackStep}>back</button>
             <button onClick={goNextStep}>next</button>
-
         </div>
-    )
-}
+    );
+};
 
 const App = ({ children }) => {
-
     return (
         <GuideProvider
             PopperContent={PopperContent}
             steps={steps}
         >
-                {children}
+            {children}
         </GuideProvider>
-    )
-}
+    );
+};
 ```
 
 
-Чтобы запустить инструкцию вам нужно вызвать функцию `start` из `useGuideHelper`:
+To initiate the guide, you need to call the `start` function from `useGuideHelpers`:
 
 ```tsx
-import { useGuideHelpers } from 'react-guide'
+import { useGuideHelpers } from 'react-guide';
 
 const MyComponent = () => {
-    const { start } = useGuideHelpers()
+    const { start } = useGuideHelpers();
     return (
         <div>
-            ...тут какой-то контент
+            ...some content here
             <button onClick={start}>Start guide</button>
         </div>
-    )
-}
+    );
+};
 ```

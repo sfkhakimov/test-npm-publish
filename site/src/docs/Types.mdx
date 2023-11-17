@@ -1,4 +1,4 @@
-## [Types](#typing)
+## [Types](#types)
 
 <br />
 
@@ -6,49 +6,49 @@
 
 <br />
 
-`rootEl?`: селектор в теле которого будут размещены компоненты инструкции. По умолчанию `body`
+`rootEl?`: selector inside which the guide components will be placed. Default is `body`
 
-`localStorageKey?`: ключ для сохранения шагов инструкции в локал стораж, если передан то инструкция будет запоминать состояние при перезагрузке страницы
+`localStorageKey?`: key for saving guide steps in local storage, if provided, the guide will remember its state upon page reload
 
-`loadingTimeout?`: время в миллисекундах которое инструкция будет ждать появления шага на странице. По умолчанию `5000`
+`loadingTimeout?`: time in milliseconds the guide will wait for a step to appear on the page. Default is `5000`
 
-`loader?`: JSX.Element который будет отображаться пока инструкция ожидает `loadingTimeout`
+`loader?`: JSX.Element to be displayed while the guide is waiting for `loadingTimeout`
 
-`steps`: массив шагов инструкции
+`steps`: array of guide steps
 
-`styles?`: объект стилей. Можно передать стили `popper`, `mask` и `overlay`
+`styles?`: styles object. You can pass styles for `popper`, `mask`, and `overlay`
 
-`padding?`: отступы для `popper`, `mask` и `overlay`
+`padding?`: padding for `popper`, `mask`, and `overlay`
 
-`placement?`: расположение инструкции, этим свойством можно управлять на уровне каждого шага. По умолчанию `bottom`
+`placement?`: guide placement, can be controlled at each step. Default is `bottom`
 
-`disableInteraction?`: блокирует возможность взаимодействия с подсвечиваемой областью. По умолчанию `none`
+`disableInteraction?`: disables interaction with the highlighted area. Default is `none`
 
-`afterOpen?`: функция которая будет запущена при монтировании провайдера
+`afterOpen?`: function that will be executed upon provider mounting
 
-`beforeClose?`: функция которая будет запущена при размонтировании провайдера
+`beforeClose?`: function that will be executed upon provider unmounting
 
-`onClickHighlighted?`: функция клика по фону
+`onClickHighlighted?`: function for clicking on the background
 
-`scrollSmooth?`: отвечает за плавность скролинга. Если `true` то скролл будет `smooth` иначае `auto`. По умолчанию `true`
+`scrollSmooth?`: controls smooth scrolling. If `true`, the scroll will be `smooth`; otherwise, `auto`. Default is `true`
 
-`PopperContent`: компонент который будет передан в контент подсказки
+`PopperContent`: component to be passed as the tooltip content
 
-`Wrapper?`: компонент обертка для всех компонентов `GuideProvider`. Пол умолчанию `React.Fragment`
+`Wrapper?`: wrapper component for all `GuideProvider` components. Default is `React.Fragment`
 
-`onChangeStep?`: асинхронная функция которая будет вызываться при изменении шага
+`onChangeStep?`: asynchronous function that will be called when the step changes
 
-`defaultOpen?`: по умолчанию `false`. Если `true` инструкция будет сразу запущена
+`defaultOpen?`: default is `false`. If `true`, the guide will start immediately
 
-`startAt?`: по умолчанию `0`. Индекс шага с которого начинается инструкция
+`startAt?`: default is `0`. Index of the step where the guide starts
 
-`beforeStart?`: асинхронная функция которая будет выполнена перед запуском инструкции
+`beforeStart?`: asynchronous function executed before starting the guide
 
-`afterStart?`: асинхронная функция которая будет выполнена сразу после запуска инструкции
+`afterStart?`: asynchronous function executed immediately after starting the guide
 
-`beforeStop?`: асинхронная функция которая будет выполнена перед остановкой инструкции
+`beforeStop?`: asynchronous function executed before stopping the guide
 
-`afterStop?`: асинхронная функция которая будет выполнена после остановки инструкции
+`afterStop?`: asynchronous function executed after stopping the guide
 
 
 <br />
@@ -57,34 +57,32 @@
 
 <br />
 
-`selector`: css селектор вашего шага
+`selector`: CSS selector of your step
 
-`title?`: заголовок шага
+`title?`: step title
 
-`content`: контент шага
+`content`: step content
 
-`placement?`: расположение подсказки рядом с подсвечиваемой областью
+`placement?`: tooltip placement next to the highlighted area
 
-`stepInteraction?`: если `true` то с подсвеченным контентом можно взаимодействовать
+`stepInteraction?`: if `true`, interaction with the highlighted content is possible
 
-`padding?`: отступы для `popper`, `mask` и `overlay`
+`padding?`: padding for `popper`, `mask`, and `overlay`
 
-`styles?`: стили для `popper`, `mask` и `overlay`
+`styles?`: styles for `popper`, `mask`, and `overlay`
 
-`loadingTimeout?`: время в миллисекундах которое инструкция будет ждать появления шага на странице. По умолчанию `5000`
+`loadingTimeout?`: time in milliseconds the guide will wait for the step to appear. Default is `5000`
 
-`onBeforeStep?`: асинхронная функция которая будет выполнена перед переходом
+`onBeforeStep?`: asynchronous function executed before transitioning to the next step
 
-`onAfterStep?`: асинхронная функция которая будет выполнена после перехода
+`onAfterStep?`: asynchronous function executed after transitioning to the next step
 
-`onChangeStep?`: асинхронная функция которая будет выполняться при переходе
+`onChangeStep?`: asynchronous function executed during the transition to the next step
 
-`meta?`: любая ваша информация, будет доступна внутри `PopperContent`
+`meta?`: any information you want, accessible inside `PopperContent`
 
-`canDisplayWhenPageReload?`: отвечает за то, должен ли этот шаг отобразится в случае перезагрузки страницы.
+`canDisplayWhenPageReload?`: controls whether this step should be displayed on page reload. Default is `true`. If `false`, it will display the previous step
 
-по умолчанию `true`. Если `false` то отобразит предыдущий шаг
+`disableNextStepBtn?`: disable the `next` button
 
-`disableNextStepBtn?`: заблокировать кнопку `назад`
-
-`disableBackStepBtn?`: заблокировать кнопку `вперед`
+`disableBackStepBtn?`: disable the `back` button

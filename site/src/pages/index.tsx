@@ -20,7 +20,11 @@ const sections = [
 
 const IndexPage: React.FC<PageProps> = () => {
     return (
-        <GuideProvider PopperContent={PopperContent} steps={steps}>
+        <GuideProvider
+            PopperContent={PopperContent}
+            steps={steps}
+            disableInteraction
+        >
             <div>
                 <div
                     style={{
@@ -33,25 +37,21 @@ const IndexPage: React.FC<PageProps> = () => {
                 <div>
                     <main className="bg-gray-800">
                         <div
-                            className="mx-auto grid h-full max-w-screen-xl grid-cols-6 gap-4 px-4 pt-12 text-gray-200"
+                            className="mx-auto flex max-w-screen-xl flex-col px-4 pt-12 text-gray-200"
                             data-guide="Two"
                         >
                             <MDXProvider components={components as Components}>
-                                {/*<div className="lg:col-end-0 hidden pt-2 lg:block">*/}
-                                {/*    <Navigation />*/}
-                                {/*</div>*/}
-                                <div className="col-span-6 lg:col-span-5">
-                                    {sections.map(({ link, Component }) => (
-                                        // <Element name={link}>
-                                        <section
-                                            className="pb-14 pt-2"
-                                            id={link}
-                                        >
-                                            <Component />
-                                        </section>
-                                        // </Element>
-                                    ))}
-                                </div>
+                                {sections.map(({ link, Component }) => (
+                                    // <Element name={link}>
+                                    <section
+                                        className="pb-14 pt-2"
+                                        id={link}
+                                        data-guide={link}
+                                    >
+                                        <Component />
+                                    </section>
+                                    // </Element>
+                                ))}
                             </MDXProvider>
                         </div>
                     </main>

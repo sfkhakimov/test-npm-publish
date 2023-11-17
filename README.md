@@ -1,44 +1,44 @@
 # react-guide 
-Библиотека которая позволяет создавать потрясающие интерактивные инструкции
+A library that allows you to create stunning interactive guides.
 
 ## [Introduction](#introduction)
 
-Однажды передо мной стояла задача создать большую интерактивную инструкцию с помощью которой можно было провести пользователя по определенному процессу
-пользования сайтом. На тот я пробовал реализовать это с помощью таких библиотек как `react-joyride` и `reactour`. Это классные библиотеки, но не
-совсем подходили под мои условия задачи. Мне нужно было учитывать что элемент может не сразу появится на страницу, или что его размеры могут меняться,
-он может двигаться или пользователь случайно перезагрузит страницу. Тогда мне пришла в голову идея создания новой библиотеки которая решала бы
-эти проблемы
+Once, I faced the task of creating a large interactive guide to lead users through a specific website usage process.
+I experimented with libraries such as `react-joyride` and `reactour`. While these are great libraries, they didn't quite suit my task's conditions.
+I needed to consider that an element might not appear immediately on the page, or its dimensions could change.
+It might move, or the user could accidentally reload the page. That's when the idea of creating a new library to solve these issues came to mind.
 
 
-## [QuickStart](#quick-start)
 
-Для начала необходимо установить пакет:
+## [Quick Start](#quick-start)
+
+To get started, you need to install the package:
 
 ```commandline
-npm i react-guide
+npm install react-guide
 ```
 
-Затем чтобы использовать инструкцию вам нужно обернуть ваше приложение с помощью `GuideProvider` и передать ему шаги вашей инструкции
-в виде `steps`. Также вам нужно передать `PopperContent` который будет отображать ваш контент подсказки:
+Then, to use the guide, you need to wrap your application with the `GuideProvider` and pass it the steps of your guide as well
+as the `PopperContent` that will display your tooltip content:
 
 ```tsx
-import React from 'react'
-import { GuideProvider, PopperContentProps } from 'react-guide'
+import React from 'react';
+import { GuideProvider, PopperContentProps } from 'react-guide';
 
 const steps = [
     {
         selector: '[data-guide=One]',
-        content: 'Контент первого шага', // Здесь вы можете разместить ваш контент. Это может быть любой JSX.Element
+        content: 'Content of the first step', // Here you can place your content. It can be any JSX.Element
     },
     {
         selector: '[data-guide=Two]',
-        content: 'Контент второго шага',
+        content: 'Content of the second step',
     },
     {
         selector: '[data-guide=Three]',
-        content: 'Контент третьего шага',
+        content: 'Content of the third step',
     },
-]
+];
 
 const PopperContent = ({
     content,
@@ -46,90 +46,131 @@ const PopperContent = ({
     goBackStep,
     skip,
 }: PopperContentProps) => {
-
     return (
         <div>
             {content}
             <button onClick={skip}>skip</button>
             <button onClick={goBackStep}>back</button>
             <button onClick={goNextStep}>next</button>
-
         </div>
-    )
-}
+    );
+};
 
 const App = ({ children }) => {
-
     return (
         <GuideProvider
             PopperContent={PopperContent}
             steps={steps}
         >
-                {children}
+            {children}
         </GuideProvider>
-    )
-}
+    );
+};
 ```
 
 
-Чтобы запустить инструкцию вам нужно вызвать функцию `start` из `useGuideHelper`:
+To initiate the guide, you need to call the `start` function from `useGuideHelpers`:
 
 ```tsx
-import { useGuideHelpers } from 'react-guide'
+import { useGuideHelpers } from 'react-guide';
 
 const MyComponent = () => {
-    const { start } = useGuideHelpers()
+    const { start } = useGuideHelpers();
     return (
         <div>
-            ...тут какой-то контент
+            ...some content here
             <button onClick={start}>Start guide</button>
         </div>
-    )
-}
+    );
+};
 ```
 
-## Types
+## [Types](#types)
+
+<br />
 
 ### GuideProviderProps
 
-`rootEl?`: селектор в теле которого будут размещены компоненты инструкции. По умолчанию `body`  
-`localStorageKey?`: ключ для сохранения шагов инструкции в локал стораж, если передан то инструкция будет запоминать состояние при перезагрузке страницы  
-`loadingTimeout?`: время в миллисекундах которое инструкция будет ждать появления шага на странице. По умолчанию `5000`  
-`loader?`: JSX.Element который будет отображаться пока инструкция ожидает `loadingTimeout`  
-`steps`: массив шагов инструкции  
-`styles?`: объект стилей. Можно передать стили `popper`, `mask` и `overlay`  
-`padding?`: отступы для `popper`, `mask` и `overlay`  
-`placement?`: расположение инструкции, этим свойством можно управлять на уровне каждого шага. По умолчанию `bottom`  
-`disableInteraction?`: блокирует возможность взаимодействия с подсвечиваемой областью. По умолчанию `none`  
-`afterOpen?`: функция которая будет запущена при монтировании провайдера  
-`beforeClose?`: функция которая будет запущена при размонтировании провайдера  
-`onClickHighlighted?`: функция клика по фону  
-`scrollSmooth?`: отвечает за плавность скролинга. Если `true` то скролл будет `smooth` иначае `auto`. По умолчанию `true`  
-`PopperContent`: компонент который будет передан в контент подсказки  
-`Wrapper?`: компонент обертка для всех компонентов `GuideProvider`. Пол умолчанию `React.Fragment`  
-`onChangeStep?`: асинхронная функция которая будет вызываться при изменении шага  
-`defaultOpen?`: по умолчанию `false`. Если `true` инструкция будет сразу запущена  
-`startAt?`: по умолчанию `0`. Индекс шага с которого начинается инструкция  
-`beforeStart?`: асинхронная функция которая будет выполнена перед запуском инструкции  
-`afterStart?`: асинхронная функция которая будет выполнена сразу после запуска инструкции  
-`beforeStop?`: асинхронная функция которая будет выполнена перед остановкой инструкции  
-`afterStop?`: асинхронная функция которая будет выполнена после остановки инструкции
+<br />
+
+`rootEl?`: selector inside which the guide components will be placed. Default is `body`
+
+`localStorageKey?`: key for saving guide steps in local storage, if provided, the guide will remember its state upon page reload
+
+`loadingTimeout?`: time in milliseconds the guide will wait for a step to appear on the page. Default is `5000`
+
+`loader?`: JSX.Element to be displayed while the guide is waiting for `loadingTimeout`
+
+`steps`: array of guide steps
+
+`styles?`: styles object. You can pass styles for `popper`, `mask`, and `overlay`
+
+`padding?`: padding for `popper`, `mask`, and `overlay`
+
+`placement?`: guide placement, can be controlled at each step. Default is `bottom`
+
+`disableInteraction?`: disables interaction with the highlighted area. Default is `none`
+
+`afterOpen?`: function that will be executed upon provider mounting
+
+`beforeClose?`: function that will be executed upon provider unmounting
+
+`onClickHighlighted?`: function for clicking on the background
+
+`scrollSmooth?`: controls smooth scrolling. If `true`, the scroll will be `smooth`; otherwise, `auto`. Default is `true`
+
+`PopperContent`: component to be passed as the tooltip content
+
+`Wrapper?`: wrapper component for all `GuideProvider` components. Default is `React.Fragment`
+
+`onChangeStep?`: asynchronous function that will be called when the step changes
+
+`defaultOpen?`: default is `false`. If `true`, the guide will start immediately
+
+`startAt?`: default is `0`. Index of the step where the guide starts
+
+`beforeStart?`: asynchronous function executed before starting the guide
+
+`afterStart?`: asynchronous function executed immediately after starting the guide
+
+`beforeStop?`: asynchronous function executed before stopping the guide
+
+`afterStop?`: asynchronous function executed after stopping the guide
 
 
-## StepType
-`selector`: css селектор вашего шага  
-`title?`: заголовок шага  
-`content`: контент шага  
-`placement?`: расположение подсказки рядом с подсвечиваемой областью  
-`stepInteraction?`: если `true` то с подсвеченным контентом можно взаимодействовать  
-`padding?`: отступы для `popper`, `mask` и `overlay`  
-`styles?`: стили для `popper`, `mask` и `overlay`  
-`loadingTimeout?`: время в миллисекундах которое инструкция будет ждать появления шага на странице. По умолчанию `5000`  
-`onBeforeStep?`: асинхронная функция которая будет выполнена перед переходом  
-`onAfterStep?`: асинхронная функция которая будет выполнена после перехода  
-`onChangeStep?`: асинхронная функция которая будет выполняться при переходе  
-`meta?`: любая ваша информация, будет доступна внутри `PopperContent`  
-`canDisplayWhenPageReload?`: отвечает за то, должен ли этот шаг отобразится в случае перезагрузки страницы.  
-по умолчанию `true`. Если `false` то отобразит предыдущий шаг  
-`disableNextStepBtn?`: заблокировать кнопку `назад`  
-`disableBackStepBtn?`: заблокировать кнопку `вперед`  
+<br />
+
+### StepType
+
+<br />
+
+`selector`: CSS selector of your step
+
+`title?`: step title
+
+`content`: step content
+
+`placement?`: tooltip placement next to the highlighted area
+
+`stepInteraction?`: if `true`, interaction with the highlighted content is possible
+
+`padding?`: padding for `popper`, `mask`, and `overlay`
+
+`styles?`: styles for `popper`, `mask`, and `overlay`
+
+`loadingTimeout?`: time in milliseconds the guide will wait for the step to appear. Default is `5000`
+
+`onBeforeStep?`: asynchronous function executed before transitioning to the next step
+
+`onAfterStep?`: asynchronous function executed after transitioning to the next step
+
+`onChangeStep?`: asynchronous function executed during the transition to the next step
+
+`meta?`: any information you want, accessible inside `PopperContent`
+
+`canDisplayWhenPageReload?`: controls whether this step should be displayed on page reload. Default is `true`. If `false`, it will display the previous step
+
+`disableNextStepBtn?`: disable the `next` button
+
+`disableBackStepBtn?`: disable the `back` button
+
