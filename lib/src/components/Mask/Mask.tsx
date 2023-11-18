@@ -1,10 +1,5 @@
 import { getDocumentSizes, getPadding, RectResult } from '../../utils'
-import React, {
-    CSSProperties,
-    Dispatch,
-    MouseEventHandler,
-    SetStateAction,
-} from 'react'
+import React, { CSSProperties, MouseEventHandler } from 'react'
 import ReactDOM from 'react-dom'
 
 type MaskProps = {
@@ -20,14 +15,12 @@ type MaskProps = {
     maskId?: string
     clipId?: string
     doDisableInteraction?: boolean
-    setReferenceEl: Dispatch<SetStateAction<Element | null>>
 }
 
 const uniqueId = (prefix: string) =>
     prefix + Math.random().toString(36).substring(2, 16)
 const Mask: React.FC<MaskProps> = ({
     rootEl,
-    setReferenceEl,
     overlayHeight,
     padding = 10,
     wrapperPadding = 0,
@@ -114,7 +107,6 @@ const Mask: React.FC<MaskProps> = ({
 
                 <rect
                     key={String(sizes?.x)}
-                    ref={setReferenceEl}
                     data-abc="abc"
                     style={{
                         // eslint-disable-next-line @typescript-eslint/ban-ts-comment

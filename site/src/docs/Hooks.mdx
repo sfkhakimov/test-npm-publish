@@ -1,0 +1,47 @@
+## [Hooks](#hooks)
+
+There are two main hooks you can use to control the guide in your components: `useVoyager` and `useVoyagerHelpers`
+
+<br />
+
+### useVoyager:
+
+<br />
+
+`isOpen`: indicates whether the guide is currently active or not.
+
+`currentStep`: the index of the current step.
+
+`steps`: an array containing your guide steps.
+
+`currStep`: the current step.
+
+`nextStep`: move to the next step.
+
+`prevStep`: move to the previous step.
+
+`startAt`: the step at which the guide started.
+
+`status`: the current status of the step (VoyagerStatusesEnum).
+
+
+<br />
+
+### useVoyagerHelpers:
+
+<br />
+
+`start`: initiates the guide (transitions to VoyagerStatusesEnum.Active).
+
+`stop`: stops the guide (transitions to VoyagerStatusesEnum.Stopped).
+
+`goNextStep`: navigates to the next step.
+
+`goBackStep`: navigates to the previous step.
+
+`goToStep`: navigates to a specific step, taking the step index as an argument.
+
+`skip`: skips and completes the guide (transitions to VoyagerStatusesEnum.Skipped).
+
+`updateSteps`: updates the steps of your guide, taking the step selector and StepType as arguments.
+

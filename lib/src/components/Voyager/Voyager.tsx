@@ -6,6 +6,7 @@ import { Mask } from '../Mask'
 import { Popper } from '../Popper'
 import { Padding, PopperRectType, VoyagerProps } from './types'
 import React, { useEffect, useMemo, useState } from 'react'
+import ReactDOM from 'react-dom'
 
 let timerId: NodeJS.Timeout
 let stepTimerId: NodeJS.Timeout
@@ -64,7 +65,6 @@ const Voyager: React.FC<VoyagerProps> = ({
         prevStep,
     } = store
     const helpers = useVoyagerHelpers()
-    const [referenceEl, setReferenceEl] = useState<Element | null>(null)
 
     const step = steps[currentStep]
 
@@ -104,6 +104,7 @@ const Voyager: React.FC<VoyagerProps> = ({
         popperRect,
         scrollOptions,
         sizes,
+        status,
     })
 
     const doDisableInteraction = step?.stepInteraction
@@ -186,11 +187,38 @@ const Voyager: React.FC<VoyagerProps> = ({
         }
     }, [])
 
+    const Component = canViewLoader ? (
+        <div style={{ zIndex: 100000, position: 'relative' }}>{loader}</div>
+    ) : (
+        <Popper
+            sizes={sizes}
+            maskPadding={maskPadding}
+            rootEl={rootEl}
+            target={target}
+            setPopperRect={setPopperRect}
+            styles={popperStyles}
+            placement={popperPlacement}
+            popperPadding={popperPadding}
+        >
+            <PopperContent
+                currentStep={currentStep}
+                steps={steps}
+                startAt={startAt}
+                status={status}
+                isOpen={isOpen}
+                currStep={currStep}
+                nextStep={nextStep}
+                prevStep={prevStep}
+                {...step}
+                {...helpers}
+            />
+        </Popper>
+    )
+
     return canViewComponent ? (
         <VoyagerWrapper>
             <Mask
                 rootEl={rootEl}
-                setReferenceEl={setReferenceEl}
                 overlayHeight={overlayHeight}
                 sizes={sizes}
                 maskStyles={maskStyles}
@@ -201,33 +229,7 @@ const Voyager: React.FC<VoyagerProps> = ({
                 wrapperPadding={wrapperPadding}
             />
 
-            {canViewLoader ? (
-                loader
-            ) : (
-                <Popper
-                    sizes={sizes}
-                    maskPadding={maskPadding}
-                    rootEl={rootEl}
-                    target={target}
-                    setPopperRect={setPopperRect}
-                    styles={popperStyles}
-                    placement={popperPlacement}
-                    popperPadding={popperPadding}
-                >
-                    <PopperContent
-                        currentStep={currentStep}
-                        steps={steps}
-                        startAt={startAt}
-                        status={status}
-                        isOpen={isOpen}
-                        currStep={currStep}
-                        nextStep={nextStep}
-                        prevStep={prevStep}
-                        {...step}
-                        {...helpers}
-                    />
-                </Popper>
-            )}
+            {ReactDOM.createPortal(Component, document.querySelector(rootEl)!)}
         </VoyagerWrapper>
     ) : null
 }

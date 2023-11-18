@@ -16,8 +16,8 @@ const Head = () => {
                 'ReactVoyager - has a clear API!',
                 'ReactVoyager - an excellent solution for creating instructional guides!',
             ],
-            typeSpeed: 10,
-            backSpeed: 10,
+            typeSpeed: 5,
+            backSpeed: 5,
             backDelay: 2000,
             loop: true,
         })
@@ -51,7 +51,7 @@ const Head = () => {
                         <span className="mr-2">Start guide</span>
                         <BsPlayFill fontSize="24px" />
                     </button>
-                    <button className="flex rounded-md bg-gray-700 p-3 text-gray-200 shadow-lg shadow-gray-500/50 transition-colors hover:bg-gray-600 active:bg-gray-800">
+                    <button className="flex rounded-md bg-gray-800 p-3 text-gray-200 shadow-lg shadow-gray-600/50 transition-colors hover:bg-gray-800/50 active:bg-gray-800/75">
                         <a className="mr-2" href="#introduction">
                             Go to documentation
                         </a>

@@ -13,11 +13,14 @@ import Types from '../docs/Types.mdx'
 import { Footer } from '../components/Footer'
 import { NextBtn } from '../components/NextBtn'
 import { Column } from '../components/Column'
+import { Loader } from '../components/Loader'
+import Hooks from '../docs/Hooks.mdx'
 
 const sections = [
     { link: 'introduction', DocsComponent: Introduction, Component: NextBtn },
     { link: 'quick-start', DocsComponent: QuickStart, Component: Column },
-    { link: 'types', DocsComponent: Types, Component: NextBtn },
+    { link: 'hooks', DocsComponent: Hooks },
+    { link: 'types', DocsComponent: Types },
 ]
 
 const IndexPage: React.FC<PageProps> = () => {
@@ -27,6 +30,7 @@ const IndexPage: React.FC<PageProps> = () => {
             localStorageKey="voyager"
             steps={steps}
             disableInteraction
+            loader={<Loader />}
         >
             <div>
                 <div className="bg-gradient-to-tr from-slate-800 to-slate-700">
@@ -48,19 +52,25 @@ const IndexPage: React.FC<PageProps> = () => {
                                             <div
                                                 id={link}
                                                 data-voyager={link}
-                                                className="max-w-[900px] overflow-hidden"
+                                                className={`${
+                                                    Component
+                                                        ? 'max-w-[900px]'
+                                                        : 'w-full'
+                                                } overflow-hidden`}
                                             >
                                                 <DocsComponent />
                                             </div>
-                                            <div
-                                                className={`${
-                                                    (i + 1) % 2 === 0
-                                                        ? 'pr-4'
-                                                        : 'pl-4'
-                                                } hidden md:block`}
-                                            >
-                                                <Component />
-                                            </div>
+                                            {Component && (
+                                                <div
+                                                    className={`${
+                                                        (i + 1) % 2 === 0
+                                                            ? 'pr-4'
+                                                            : 'pl-4'
+                                                    } hidden md:block`}
+                                                >
+                                                    <Component />
+                                                </div>
+                                            )}
                                         </section>
                                     ),
                                 )}

@@ -11,7 +11,6 @@ import React, {
     useEffect,
     useRef,
 } from 'react'
-import ReactDOM from 'react-dom'
 
 export type PopperProps = {
     sizes: RectResult
@@ -57,7 +56,7 @@ const Popper: React.FC<PopperProps> = ({
         })
     }, [coordinates, target])
 
-    return ReactDOM.createPortal(
+    return (
         <div
             style={{
                 ...defaultStyles,
@@ -71,8 +70,7 @@ const Popper: React.FC<PopperProps> = ({
         >
             <div className={`${popperPlacement} popper-arrow`}></div>
             {children}
-        </div>,
-        document.querySelector(rootEl)!
+        </div>
     )
 }
 

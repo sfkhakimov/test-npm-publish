@@ -5,10 +5,15 @@ const PopperContent = ({
     content,
     goNextStep,
     goBackStep,
+    stop,
     skip,
     disableBackStepBtn,
     disableNextStepBtn,
+    currentStep,
+    steps,
 }: PopperContentProps) => {
+    const isLastStep = currentStep + 1 === steps.length
+
     const buttons = [
         {
             label: 'skip',
@@ -25,18 +30,21 @@ const PopperContent = ({
             disabled: disableBackStepBtn,
         },
         {
-            label: 'next',
+            label: isLastStep ? 'complete' : 'next',
             className: disableNextStepBtn
                 ? 'bg-blue-500'
                 : 'bg-blue-500/25 shadow shadow-blue-500 hover:bg-blue-500/50 active:bg-blue-500/75 transition',
-            onClick: goNextStep,
+            onClick: isLastStep ? stop : goNextStep,
             disabled: disableNextStepBtn,
         },
     ]
 
     return (
         <div className="max-w-md p-4">
-            <div className="pb-4">{content}</div>
+            <div className="pb-1">{content}</div>
+            <div className="pb-4">
+                {currentStep + 1} / {steps.length}{' '}
+            </div>
             <div className="grid grid-cols-3 gap-2">
                 {buttons.map(({ className, onClick, label, disabled }) => (
                     <button

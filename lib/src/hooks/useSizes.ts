@@ -81,8 +81,6 @@ export const useSizes = ({ step }: Args) => {
         sizes,
         target,
         targetRef,
-        observableRefresher: updateSizes,
-        setTarget,
         overlayHeight,
     }
 }
