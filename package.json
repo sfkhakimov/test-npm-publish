@@ -1,5 +1,5 @@
 {
-    "name": "test-npm-publish-a",
+    "name": "react-voyager-mono",
     "version": "0.0.54",
     "description": "Тестовый npm пакет",
     "workspaces": [
@@ -15,9 +15,6 @@
         "site:build": "npm run build -w site",
         "site:tsc": "npm run typecheck -w site"
     },
-    "keywords": [
-        "5679test"
-    ],
     "repository": {
         "type": "git",
         "url": "git+https://github.com/sfkhakimov/test-npm-publish.git"
@@ -27,11 +24,5 @@
     "bugs": {
         "url": "https://github.com/sfkhakimov/test-npm-publish/issues"
     },
-    "homepage": "https://github.com/sfkhakimov/test-npm-publish#readme",
-    "files": [
-        ""
-    ],
-    "dependencies": {
-        "prism-react-renderer": "^2.2.0"
-    }
+    "homepage": "https://github.com/sfkhakimov/test-npm-publish#readme"
 }

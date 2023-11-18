@@ -1,5 +1,5 @@
 import React from 'react'
-import { useVoyager, useVoyagerHelpers } from 'lib/src'
+import { useVoyager, useVoyagerHelpers } from 'react-voyager/src'
 
 const NextBtn = () => {
     const { isOpen } = useVoyager()

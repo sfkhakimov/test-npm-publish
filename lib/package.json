@@ -1,5 +1,5 @@
 {
-    "name": "lib",
+    "name": "react-voyager",
     "version": "0.0.54",
     "description": "Тестовый npm пакет",
     "main": "./dist/index.js",
@@ -13,7 +13,7 @@
         "lint:fix": "eslint --ext .js,.jsx,.ts,.tsx src --fix"
     },
     "keywords": [
-        "5679test"
+        "test--test"
     ],
     "repository": {
         "type": "git",

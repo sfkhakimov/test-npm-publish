@@ -1,4 +1,4 @@
-import { StepType } from 'lib/src'
+import { StepType } from 'react-voyager/src'
 
 export const steps: StepType[] = [
     {

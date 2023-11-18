@@ -1,4 +1,4 @@
-import { PopperContentProps } from 'lib/src'
+import { PopperContentProps } from 'react-voyager/src'
 import React from 'react'
 
 const PopperContent = ({

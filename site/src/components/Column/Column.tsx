@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { AiFillStar } from 'react-icons/ai'
-import { useVoyager } from 'lib/src'
+import { useVoyager } from 'react-voyager/src'
 
 const Column = () => {
     const { isOpen } = useVoyager()

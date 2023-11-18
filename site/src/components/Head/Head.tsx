@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react'
 import Header from '../Header/Header'
 import { BsPlayFill } from 'react-icons/bs'
 import { AiOutlineArrowDown } from 'react-icons/ai'
-import { useVoyagerHelpers } from 'lib/src'
+import { useVoyagerHelpers } from 'react-voyager/src'
 import Typed from 'typed.js'
 
 const Head = () => {
